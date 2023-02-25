@@ -1,4 +1,4 @@
 # Sustainability
 Waste Team
 ## Jeanie
-## Samuel
+## Samuel Check
