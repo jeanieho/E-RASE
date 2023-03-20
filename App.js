@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native/types';
 import './App.css';
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native/types";
 import BottomTab from "./Screens/BottomTab";
 import { NavigationContainer } from '@react-navigation/native';
 
