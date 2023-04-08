@@ -103,7 +103,7 @@ export default function App() {
             title={marker.title}
             coordinate={marker.coordinates}
             // pinColor={'#0000FF'}
-            image={require('./assets/favicon.png')}
+            // image={require('./assets/favicon.png')}
           >
             <Callout>
               <View style={styles.callout}>
