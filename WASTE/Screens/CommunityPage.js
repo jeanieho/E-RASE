@@ -18,9 +18,15 @@ import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 
 
 const ListItem = ({ item, filter }) => {
-  
+
+  const navigation = useNavigation();
+
+  const itemDescription = () => {
+    navigation.navigate('Item')
+  }
+
     return (
-    <View style={styles.item}>
+    <TouchableOpacity onPress={itemDescription} style={styles.item}>
       <Image
         source={{
           uri: item.uri,
@@ -31,7 +37,7 @@ const ListItem = ({ item, filter }) => {
       <Text style={styles.itemName}>{item.text}</Text>
       <Text style={styles.itemPrice}>{item.price}</Text>
       <Text style={styles.itemCondition}>used</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 

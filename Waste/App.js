@@ -13,6 +13,7 @@ import NewItemScreen from './Screens/newitem'
 import MAP from './Screens/Map'
 import CommunityScreen from './Screens/CommunityPage'
 import ProfileScreen from './Screens/ProfileScreen'
+import ItemScreen from './Screens/ItemScreen'
 // import Snap from './Screens/TakePhoto'
 // import CheckPhoto from './Screens/CheckPhoto'
 // import ImagePickerExample from './Screens/ImagePicker'
@@ -40,7 +41,7 @@ function CommunityStackScreen() {
     }}>
       <CommunityStack.Screen name="Community" component={CommunityScreen}/>
       <CommunityStack.Screen name="New Item" component={NewItemScreen} />
-      {/* <NewItemStack.Screen name="Select Photo" component={ImagePickerExample} /> */}
+      <CommunityStack.Screen name="Item" component={ItemScreen} />
       {/* <NewItemStack.Screen name="Snap" component={Snap} />
       <NewItemStack.Screen name="CheckPhoto" component={CheckPhoto}/> */}
     </CommunityStack.Navigator>
