@@ -8,8 +8,13 @@ import {
   SafeAreaView,
   Image,
   FlatList,
+  TouchableOpacity, TextInput, Button, TouchableHighlight, 
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { navigation, useNavigation, NavigationContainer, navigate, useRoute} from '@react-navigation/native';
+import AddItem from './AddItem';
+// import { Icon } from 'react-native-icons';
+import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 
 
 const ListItem = ({ item, filter }) => {
@@ -30,15 +35,35 @@ const ListItem = ({ item, filter }) => {
   );
 };
 
-export default () => {
+
+export default CommunityScreen = () => {
+  const navigation = useNavigation();
+  
+  
+  const addItem = () => {
+    navigation.navigate('New Item')
+  }
   return (
     <View style={styles.container}>
+
         <LinearGradient
           colors={['black', 'purple', 'black' ]}
           style={styles.linearGradient}
         >
       <StatusBar style="light" />
       <SafeAreaView style={{ flex: 1 }}>
+
+      {/* <View>
+          <TouchableOpacity onPress={addItem} style={styles.add}>
+          </TouchableOpacity>
+        </View> */}
+          {/* <TouchableOpacity onPress={() => {addItem}} style={styles.add}>
+            <Ionicons name="md-checkmark-circle" size={32} color="green"></Ionicons>
+          </TouchableOpacity> */}
+      {/* <Button title="hi" style={styles.add} onPress={addItem}>
+        <Text>Hi</Text>
+      </Button> */}
+
         <SectionList
           contentContainerStyle={{ paddingHorizontal: 10 }}
           stickySectionHeadersEnabled={false}
@@ -70,12 +95,25 @@ export default () => {
                 ) : null}
               </>
             }
+            // <Button title="ADD ITEM" style={styles.add} onPress={addItem}/>
 
             // return <ListItem item={item} />;
           }}
         />
       </SafeAreaView>
-      </LinearGradient>
+      </LinearGradient> 
+      <TouchableOpacity onPress={addItem} style={styles.add}>
+        <Ionicons position='center' name="add" size={60} color="white" style={{left: 1}}></Ionicons>
+      </TouchableOpacity>
+      {/* <TouchableHighlight
+        onPress={addItem} style={styles.add}
+        underlayColor='#042417'>
+        <View
+          style={styles.btnContainer}>
+          <Ionicons name="md-checkmark-circle" size={32} color="green"></Ionicons>
+          <Text style={styles.btnText}>Sign In with Facebook</Text>
+        </View>
+      </TouchableHighlight>  */}
     </View>
   );
 };
@@ -308,6 +346,19 @@ lineHeight: 13,
 
 color: 'rgba(255, 255, 255, 0.47)',
   },
+  add: {
+position: 'absolute',
+padding: 0,
+// width: 50,
+// height: 50,
+left: 319,
+top: 632,
+borderRadius: 35,
+
+backgroundColor: 'purple',
+
+  },
+
 });
 
 // import React from 'react';

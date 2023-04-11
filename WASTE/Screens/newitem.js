@@ -21,7 +21,7 @@ import { doc, updateDoc, setDoc, addDoc, deleteDoc } from "firebase/firestore"
 
 export default NewItemScreen = () => {
     const route = useRoute();
-    const {itemID, photo} = route.params;
+    // const {itemID, photo} = route.params;
   const navigation = useNavigation();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -98,8 +98,8 @@ export default NewItemScreen = () => {
     // navigation.navigate('Add Item')
     let id = '5';
     // navigation.navigate('Add Item')
-    await setDoc(doc(db, `For Sale`, id), { itemID, categoryValue, name, email, price, description, png})
-    navigation.navigate('Add Item')
+    await setDoc(doc(db, `For Sale`, id), { id, categoryValue, name, email, price, description, png})
+    navigation.navigate('Community')
   }
   return (
     // <ScrollView>

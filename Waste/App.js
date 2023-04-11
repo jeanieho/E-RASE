@@ -29,17 +29,20 @@ import { doc, updateDoc, setDoc, addDoc, deleteDoc } from "firebase/firestore"
 //    </HomeStack.Navigator>
 //   );
 // }
-const NewItemStack = createStackNavigator();
+const CommunityStack = createStackNavigator();
 
-function NewItemStackScreen() {
+function CommunityStackScreen() {
   return (
-    <NewItemStack.Navigator>
-      <NewItemStack.Screen name="Add Item" component={AddItemScreen} initialParams={{ itemId: 0, photo: null }} />
-      <NewItemStack.Screen name="New Item" component={NewItemScreen} />
+    <CommunityStack.Navigator
+    screenOptions={{
+      headerShown: false
+    }}>
+      <CommunityStack.Screen name="Community" component={CommunityScreen}/>
+      <CommunityStack.Screen name="New Item" component={NewItemScreen} />
       {/* <NewItemStack.Screen name="Select Photo" component={ImagePickerExample} /> */}
       {/* <NewItemStack.Screen name="Snap" component={Snap} />
       <NewItemStack.Screen name="CheckPhoto" component={CheckPhoto}/> */}
-    </NewItemStack.Navigator>
+    </CommunityStack.Navigator>
   );
   }
 
@@ -67,7 +70,7 @@ function MyTabs() {
           <MaterialCommunityIcons name="map" color={color} size={26} />
         ),
       }} />
-      <Tab.Screen name="Add" component={NewItemStackScreen} 
+      <Tab.Screen name="Add" component={CommunityStackScreen} 
       options={{
         tabBarLabel: 'Add',
         tabBarIcon: ({ color }) => (
