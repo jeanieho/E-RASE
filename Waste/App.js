@@ -12,6 +12,7 @@ import AddItemScreen from './Screens/AddItem'
 import NewItemScreen from './Screens/newitem'
 import MAP from './Screens/Map'
 import CommunityScreen from './Screens/CommunityPage'
+import ProfileScreen from './Screens/ProfileScreen'
 // import Snap from './Screens/TakePhoto'
 // import CheckPhoto from './Screens/CheckPhoto'
 // import ImagePickerExample from './Screens/ImagePicker'
@@ -77,9 +78,9 @@ function MyTabs() {
           <MaterialCommunityIcons name="plus" color={color} size={26} />
         ),
       }}/>
-      <Tab.Screen name="Community" component={CommunityScreen} 
+      <Tab.Screen name="Profile" component={ProfileScreen} 
       options={{
-        tabBarLabel: 'Community',
+        tabBarLabel: 'Profile',
         tabBarIcon: ({ color }) => (
           <MaterialCommunityIcons name="account" color={color} size={26} />
         ),

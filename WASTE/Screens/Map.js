@@ -153,10 +153,10 @@ export default function Map() {
           <View>
             <Text>E-RASE</Text>
             {/* <Image
-            //   source={require('/Users/jeanieho/Documents/Convergent/Sustainability/Waste/assets/logo.png')}
-            //   resizeMode="contain"
-            //   style={styles.loadingImage}
-            // ></Image> */}
+              source={require('../assets/logo.png')}
+              resizeMode="contain"
+              style={styles.loadingImage}
+            ></Image> */}
           </View>
     
         // <Image style={styles.loadingImage}> </Image>
