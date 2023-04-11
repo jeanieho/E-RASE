@@ -22,7 +22,8 @@ const ListItem = ({ item, filter }) => {
   const navigation = useNavigation();
 
   const itemDescription = () => {
-    navigation.navigate('Item')
+    navigation.navigate('Item', 
+    {item: item})
   }
 
     return (

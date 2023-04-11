@@ -10,20 +10,24 @@ import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 
 
 export default ItemScreen = () => {
+    const route = useRoute();
+    const {item} = route.params;
+    const navigation = useNavigation();
+    const png = item.uri;
 
   return (
     <View>
-        <Image style={styles.itempic} source={{uri: 'https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg'}}></Image>
+        <Image style={styles.itempic} source={{uri: png}}></Image>
         <View style={styles.descbox}>
             <Image style={styles.profpic} source={{uri: 'https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg'}}></Image>
-            <Text style={styles.itemName}>iPhone 14 Pro Max</Text>
-            <Text style={styles.price}>$879</Text>
+            <Text style={styles.itemName}>{item.name}</Text>
+            <Text style={styles.price}>${item.price}</Text>
             <Text style={styles.date}>Listed 2 days ago 5 mi away</Text>
             <Text style={styles.name}>Peter Porker</Text>
             <Text style={styles.verified}>Verified Seller</Text>
             <Text style={styles.details}>Details</Text>
             <Text style={styles.condition}>Condition: Lightly used</Text>
-            <Text style={styles.description}>Notes: 32 GB storage, includes protective case and charging cable. Works great and in excellent condition!</Text>
+            <Text style={styles.description}>{item.description}</Text>
             <Ionicons position='center' name="checkmark-circle" size={20} color="white" style={styles.verifIcon}></Ionicons>
             <TouchableOpacity style={styles.heartBubble}>
                 <Ionicons position='center' name="heart" size={30} color="white" style={styles.heart}></Ionicons>
