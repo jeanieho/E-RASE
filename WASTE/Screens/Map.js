@@ -152,11 +152,11 @@ export default function Map() {
       ) : (
           <View>
             <Text>E-RASE</Text>
-            {/* <Image
+            <Image
               source={require('../assets/logo.png')}
               resizeMode="contain"
               style={styles.loadingImage}
-            ></Image> */}
+            ></Image>
           </View>
     
         // <Image style={styles.loadingImage}> </Image>
@@ -219,10 +219,10 @@ var styles = StyleSheet.create({
   },
   loadingImage: {
     position: 'absolute',
-    width: 844,
-    height: 410,
-    left: -20,
-    top: 844,
+    width: 390,
+    height: 844,
+    left: 0,
+    top: 0,
     backgroundColor: '#27242D',
     // transform: rotate(-90),
   },

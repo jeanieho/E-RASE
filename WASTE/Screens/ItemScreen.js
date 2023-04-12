@@ -6,6 +6,9 @@ import * as React from 'react';
 import { Button, StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
+import * as MailComposer from 'expo-mail-composer';
+import { useState, useEffect, useCallback} from 'react'
+
 
 
 
@@ -14,6 +17,21 @@ export default ItemScreen = () => {
     const {item} = route.params;
     const navigation = useNavigation();
     const png = item.uri;
+    const [heart, setHeart] = useState('white');
+
+    const changeColor = () => {
+        heart == 'white' ? setHeart('red') : setHeart('white');
+    }
+
+    const sendEmail = async () => {
+        if(MailComposer.isAvailableAsync()){
+            MailComposer.composeAsync({
+                recipients: item.email,
+                subject: 'Buying ' + item.name,
+                body: 'I would like to buy ' + item.name + ' from you!',
+            });
+        }
+      }
 
   return (
     <View>
@@ -29,13 +47,13 @@ export default ItemScreen = () => {
             <Text style={styles.condition}>Condition: Lightly used</Text>
             <Text style={styles.description}>{item.description}</Text>
             <Ionicons position='center' name="checkmark-circle" size={20} color="white" style={styles.verifIcon}></Ionicons>
-            <TouchableOpacity style={styles.heartBubble}>
-                <Ionicons position='center' name="heart" size={30} color="white" style={styles.heart}></Ionicons>
+            <TouchableOpacity style={styles.heartBubble} onPress={changeColor}>
+                <Ionicons position='center' name="heart" size={30} color={heart} style={styles.heart}></Ionicons>
             </TouchableOpacity>
             <TouchableOpacity>
                 <Ionicons position='center' name="chatbubbles" size={40} color="white" style={styles.message}></Ionicons>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={sendEmail}>
                 <Ionicons position='center' name="mail" size={40} color="white" style={styles.mail}></Ionicons>
             </TouchableOpacity>
         </View>

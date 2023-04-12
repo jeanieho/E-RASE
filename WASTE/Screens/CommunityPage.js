@@ -10,6 +10,7 @@ import {
   FlatList,
   TouchableOpacity, TextInput, Button, TouchableHighlight, 
 } from 'react-native';
+import { useState, useEffect, useCallback} from 'react'
 import { LinearGradient } from 'expo-linear-gradient';
 import { navigation, useNavigation, NavigationContainer, navigate, useRoute} from '@react-navigation/native';
 import AddItem from './AddItem';
@@ -18,7 +19,6 @@ import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 
 
 const ListItem = ({ item, filter }) => {
-
   const navigation = useNavigation();
 
   const itemDescription = () => {
@@ -42,10 +42,66 @@ const ListItem = ({ item, filter }) => {
   );
 };
 
+const ListCE = ({ item, filter }) => {
+  if(item.category == "CE"){
+  const navigation = useNavigation();
+
+  const itemDescription = () => {
+    navigation.navigate('Item', 
+    {item: item})
+  }
+
+    return (
+    <TouchableOpacity onPress={itemDescription} style={styles.item}>
+      <Image
+        source={{
+          uri: item.uri,
+        }}
+        style={styles.itemPhoto}
+        resizeMode="cover"
+      />
+      <Text style={styles.itemName}>{item.text}</Text>
+      <Text style={styles.itemPrice}>{item.price}</Text>
+      <Text style={styles.itemCondition}>used</Text>
+    </TouchableOpacity>
+  );
+  }
+};
+
+const ListW = ({ item, filter }) => {
+  if(item.category == "W"){
+
+  const navigation = useNavigation();
+
+  const itemDescription = () => {
+    navigation.navigate('Item', 
+    {item: item})
+  }
+
+    return (
+    <TouchableOpacity onPress={itemDescription} style={styles.item}>
+      <Image
+        source={{
+          uri: item.uri,
+        }}
+        style={styles.itemPhoto}
+        resizeMode="cover"
+      />
+      <Text style={styles.itemName}>{item.text}</Text>
+      <Text style={styles.itemPrice}>{item.price}</Text>
+      <Text style={styles.itemCondition}>used</Text>
+    </TouchableOpacity>
+  );
+  }
+};
+
 
 export default CommunityScreen = () => {
   const navigation = useNavigation();
-  
+  const [search, setSearch] = useState('');
+  const CE = 'CE';
+  const All = 1;
+
   
   const addItem = () => {
     navigation.navigate('New Item')
@@ -60,16 +116,14 @@ export default CommunityScreen = () => {
       <StatusBar style="light" />
       <SafeAreaView style={{ flex: 1 }}>
 
-      {/* <View>
-          <TouchableOpacity onPress={addItem} style={styles.add}>
-          </TouchableOpacity>
+      {/* <View style={styles.searchBar}>
+            <TextInput
+              style={styles.searchText}
+              placeholder="What are you looking for?"
+              onChangeText={newSearch => setSearch(newSearch)}
+              defaultValue={search} />
+          <Ionicons position='center' name="search" size={20} color="white" style={styles.searchIcon}></Ionicons>
         </View> */}
-          {/* <TouchableOpacity onPress={() => {addItem}} style={styles.add}>
-            <Ionicons name="md-checkmark-circle" size={32} color="green"></Ionicons>
-          </TouchableOpacity> */}
-      {/* <Button title="hi" style={styles.add} onPress={addItem}>
-        <Text>Hi</Text>
-      </Button> */}
 
         <SectionList
           contentContainerStyle={{ paddingHorizontal: 10 }}
@@ -82,7 +136,33 @@ export default CommunityScreen = () => {
                 <FlatList
                   horizontal
                   data={section.data}
-                  renderItem={({ item }) => <ListItem item={item} />}
+                  renderItem={({ item, All }) => <ListItem item={item} />}
+                  showsHorizontalScrollIndicator={false}
+                />
+              ) : null}
+              <Text style={styles.sectionHeader2}>Cooling Equipment</Text>
+              {section.horizontal ? (
+                <FlatList
+                  horizontal
+                  data={section.data}
+                  renderItem={({ item }) => <ListCE item={item} />}
+                  showsHorizontalScrollIndicator={false}
+                />
+              ) : null}
+              <Text style={styles.sectionHeader2}>Wiring</Text>
+              {section.horizontal ? (
+                <FlatList
+                  horizontal
+                  data={section.data}
+                  renderItem={({ item }) => <ListW item={item} />}
+                  showsHorizontalScrollIndicator={false}
+                />
+              ) : null}
+                            {section.horizontal ? (
+                <FlatList
+                  horizontal
+                  data={section.data}
+                  renderItem={({ item }) => <ListW item={item} />}
                   showsHorizontalScrollIndicator={false}
                 />
               ) : null}
@@ -105,10 +185,20 @@ export default CommunityScreen = () => {
             // <Button title="ADD ITEM" style={styles.add} onPress={addItem}/>
 
             // return <ListItem item={item} />;
-          }}
+          }
+        }
         />
       </SafeAreaView>
-      </LinearGradient> 
+      </LinearGradient>
+      <View style={styles.searchBar}>
+            <TextInput
+              style={styles.searchText}
+              placeholder="What are you looking for?"
+              placeholderTextColor='#FFFFFF'
+              onChangeText={newSearch => setSearch(newSearch)}
+              defaultValue={search} />
+          <Ionicons position='center' name="search" size={20} color="white" style={styles.searchIcon}></Ionicons>
+        </View> 
       <TouchableOpacity onPress={addItem} style={styles.add}>
         <Ionicons position='center' name="add" size={60} color="white" style={{left: 1}}></Ionicons>
       </TouchableOpacity>
@@ -285,6 +375,13 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     fontSize: 18,
     color: '#f4f4f4',
+    marginTop: 65,
+    marginBottom: 5,
+  },
+  sectionHeader2: {
+    fontWeight: '800',
+    fontSize: 18,
+    color: '#f4f4f4',
     marginTop: 20,
     marginBottom: 5,
   },
@@ -365,7 +462,39 @@ borderRadius: 35,
 backgroundColor: 'purple',
 
   },
+  searchBar: {
+    position: 'absolute',
+    width: 354,
+    height: 45,
+    left: 18,
+    top: 44,
+    
+    backgroundColor: '#27242D',
+    borderRadius: 30,
 
+  },
+  searchText: {
+    position: 'relative',
+    // width: 147.48,
+    height: 15,
+    left: 51.87,
+    top: 15,
+    
+    fontFamily: 'Inter',
+    fontStyle: 'normal',
+    // fontWeight: 400,
+    fontSize: 12,
+    lineHeight: 15,
+    /* identical to box height */
+    color: '#FFFFFF',
+  },
+  searchIcon: {
+    position: 'absolute',
+    width: 20,
+    height: 20.04,
+    left: 19,
+    top: 13,
+  },
 });
 
 // import React from 'react';

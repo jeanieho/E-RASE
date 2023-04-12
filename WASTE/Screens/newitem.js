@@ -40,10 +40,21 @@ export default NewItemScreen = () => {
     { label: "Wiring", value: "W" },
     { label: "Other Items", value: "O" },
   ]);
+
+  const [conditionOpen, setConditionOpen] = useState(false);
+  const [conditionValue, setConditionValue] = useState(null);
+  const [condition, setCondition] = useState([
+    { label: "New", value: "New" },
+    { label: "Lightly Used", value: "Lightly Used" },
+    { label: "Used", value: "Used" },
+    { label: "Heavily Used", value: "Heavily Used" },
+  ]);
+  
   const [image, setImage] = useState(null);
   const [base64, setBase64] = useState(null);
-  const [png, setPng] = useState('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHwAAAB8CAMAAACcwCSMAAAAZlBMVEX///8AAAC0tLQVFRXg4ODl5eX8/Pzx8fGhoaH39/enp6fMzMzp6embm5vJycnd3d2+vr4NDQ1ra2tZWVlQUFBxcXGLi4teXl6VlZUlJSWCgoIqKio6OjowMDBLS0vW1tZDQ0N5eXlcBE/0AAADQklEQVRoge3baWOCMAwGYOsBqHjgxGPe//9PDlGUI0mTUsqH9f3K4JEqSeO2geoxg3+NJ6MekrzxaDJ2nkn0xoeDHjL0uMc97nGPe9zjksyjVV94sM2u/9sTnuZ7tVlbfGpij0c5fm6L7wIDfP7apY7idnicmLw5BT5ph6/V0eDWby/8CByS4BulFnJ8sM/xQzs8OGY/Z3Dr8Sk7bwN9WAX4ErsBXcLoMQRftADf5csXGuhYBHiS42Cp6hxfvcdKuEx3jC/e+KYP/FpM1HP3ePgZ57fu8dkHV2vnePrFT67x76ojvblLfF3GE5PW2gJPy7hRfzHHw3MFT+wUWSZ+U9XsXOK/NVwB+5LO8HMdT93h9VXPcnOGR038xxl+aeI2+gsLjwFbXRzhMwi30F9Y+B7EL62LLAcPQNtCf+HgawQ/tS2yHLxR3oqYbOKF+DTBcGjyLE6yhAPlrcgDOydIOToDR1c9yxg5Z60iK/j0SuDYJv6sRoxPox4fEzY2vzyvymj5enxB4vAmPj+Efxr5OLXqWZbAKRH5lgjwFfqgvXJtFtni2dS2fC0+pG3ozOKN0rZ8Lb7V4ef6Ex1+1krX93R4qFl11ewvO/x1CXHtqit1rD7Rk9LL1VQaHZ5iZCnVJ/qBvy4pzrCrT/SqcoSuNBp8zsLL/WWDvy4pvoMs6tZXtSPkcKHBTzz8W8x+6oeoSkPjdFMBiGbvpyoNjR+4+B67cbLSkHgAXAvJi1gCR+54pSFxcFKBc3/2lwCsxfgOm8ThSQXO8wLwHhuvNCTOX/VsJxsMgsYU/wpaaSg8PgpwtcD7APY1BoVjkwqSKVoUsD0NhW+wi8FBFv0Z5GtyAsfvRByk0hA49NCaBq40BE5NKtLAlYbALdpIpcFxYj40CDjL4zg9qYgDVRocJ54co0h+kRvqLiYNUGlQXNJUeGnuaVBcWN4YaVYaDLe+6goYaDFc2FRYudcHWgy3v+qqWWkQPIS+Z26dS8jCeZOKOAcW/ugGr/3JCILbLm9FUgbe0aqrWqWBcfakIs5Vj9vbQDWy1OHs+dAg5UoD4sBvsuxlpsHjSZfRveeO4nGPe9zjHve4x63ivf6bYK//INlb/i/+B+9pLsz8GMOjAAAAAElFTkSuQmCC');
+  // const [png, setPng] = useState('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHwAAAB8CAMAAACcwCSMAAAAZlBMVEX///8AAAC0tLQVFRXg4ODl5eX8/Pzx8fGhoaH39/enp6fMzMzp6embm5vJycnd3d2+vr4NDQ1ra2tZWVlQUFBxcXGLi4teXl6VlZUlJSWCgoIqKio6OjowMDBLS0vW1tZDQ0N5eXlcBE/0AAADQklEQVRoge3baWOCMAwGYOsBqHjgxGPe//9PDlGUI0mTUsqH9f3K4JEqSeO2geoxg3+NJ6MekrzxaDJ2nkn0xoeDHjL0uMc97nGPe9zjksyjVV94sM2u/9sTnuZ7tVlbfGpij0c5fm6L7wIDfP7apY7idnicmLw5BT5ph6/V0eDWby/8CByS4BulFnJ8sM/xQzs8OGY/Z3Dr8Sk7bwN9WAX4ErsBXcLoMQRftADf5csXGuhYBHiS42Cp6hxfvcdKuEx3jC/e+KYP/FpM1HP3ePgZ57fu8dkHV2vnePrFT67x76ojvblLfF3GE5PW2gJPy7hRfzHHw3MFT+wUWSZ+U9XsXOK/NVwB+5LO8HMdT93h9VXPcnOGR038xxl+aeI2+gsLjwFbXRzhMwi30F9Y+B7EL62LLAcPQNtCf+HgawQ/tS2yHLxR3oqYbOKF+DTBcGjyLE6yhAPlrcgDOydIOToDR1c9yxg5Z60iK/j0SuDYJv6sRoxPox4fEzY2vzyvymj5enxB4vAmPj+Efxr5OLXqWZbAKRH5lgjwFfqgvXJtFtni2dS2fC0+pG3ozOKN0rZ8Lb7V4ef6Ex1+1krX93R4qFl11ewvO/x1CXHtqit1rD7Rk9LL1VQaHZ5iZCnVJ/qBvy4pzrCrT/SqcoSuNBp8zsLL/WWDvy4pvoMs6tZXtSPkcKHBTzz8W8x+6oeoSkPjdFMBiGbvpyoNjR+4+B67cbLSkHgAXAvJi1gCR+54pSFxcFKBc3/2lwCsxfgOm8ThSQXO8wLwHhuvNCTOX/VsJxsMgsYU/wpaaSg8PgpwtcD7APY1BoVjkwqSKVoUsD0NhW+wi8FBFv0Z5GtyAsfvRByk0hA49NCaBq40BE5NKtLAlYbALdpIpcFxYj40CDjL4zg9qYgDVRocJ54co0h+kRvqLiYNUGlQXNJUeGnuaVBcWN4YaVYaDLe+6goYaDFc2FRYudcHWgy3v+qqWWkQPIS+Z26dS8jCeZOKOAcW/ugGr/3JCILbLm9FUgbe0aqrWqWBcfakIs5Vj9vbQDWy1OHs+dAg5UoD4sBvsuxlpsHjSZfRveeO4nGPe9zjHve4x63ivf6bYK//INlb/i/+B+9pLsz8GMOjAAAAAElFTkSuQmCC');
 
+  const [png, setPng] = useState('../assets/icon.png')
   const { handleSubmit, control } = useForm();
 
   useEffect(() => {
@@ -98,7 +109,7 @@ export default NewItemScreen = () => {
     // navigation.navigate('Add Item')
     let id = '5';
     // navigation.navigate('Add Item')
-    await setDoc(doc(db, `For Sale`, id), { id, categoryValue, name, email, price, description, png})
+    await setDoc(doc(db, `For Sale`, id), { id, categoryValue, conditionValue, name, email, price, description, png})
     navigation.navigate('Community')
   }
   return (
@@ -122,14 +133,30 @@ export default NewItemScreen = () => {
               setOpen={setCategoryOpen}
               setValue={setCategoryValue}
               setItems={setCategory}
-              placeholder="Select Catgory"
+              placeholder="Select Category"
               placeholderStyle={styles.placeholderStyles}
             // //   onOpen={onGenderOpen}
             //   onChangeValue={onChange}
               zIndex={3000}
               zIndexInverse={1000}
             />
+                <Text>Condition</Text>
 
+                  <DropDownPicker
+              style={styles.dropdown}
+              open={conditionOpen}
+              value={conditionValue} //genderValue
+              items={condition}
+              setOpen={setConditionOpen}
+              setValue={setConditionValue}
+              setItems={setCondition}
+              placeholder="Select Condition"
+              placeholderStyle={styles.placeholderStyles}
+            // //   onOpen={onGenderOpen}
+            //   onChangeValue={onChange}
+              zIndex={3000}
+              zIndexInverse={1000}
+            />
       <Text>Price: </Text>
       <TextInput
       style={{height: 40}}
@@ -157,7 +184,7 @@ export default NewItemScreen = () => {
       />
       <Button title="Pick an image from camera roll" onPress={pickImage} />
       {/* <Text>{png}</Text> */}
-      <Image source={{ uri: png }} style={{ width: 200, height: 200 }} />
+      <Image source={require=('../assets/ConvergentProfilePic.jpg')} style={{ width: 200, height: 200 }} />
       {/* <Button
         title="Testing"
         onPress={choosePress}
@@ -169,7 +196,7 @@ export default NewItemScreen = () => {
       {/* <Text>{image}</Text> */}
       {/* {image && <Image source={{uri: image}} style={{flex:1, flexDirection: 'row',}}/>} */}
     </View>
-    // </ScrollView>
+  //  {/* </ScrollView> */}
   );
 }
 
