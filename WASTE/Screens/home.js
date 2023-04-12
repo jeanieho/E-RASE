@@ -7,6 +7,8 @@ import { collection, onSnapshot, query, getDoc, doc } from "firebase/firestore";
 
 function readData () {
   const displayPhoto = async () => {
+    const query = query(collection(db, "For Sale"));
+    const unsubscribe = onSnapshot(query, (querySnapshot) => {querySnapshot.forEach((doc) => {data = doc.data()})});
     const docRef = doc(db, "photo", "{itemID}");
     const doc = await getDoc(docRef);
     data = doc.itemID;
@@ -22,15 +24,17 @@ const HomeScreen = () => {
 
 
 // useEffect(() => {
+//   // const query = query(collection(db, "For Sale"));
+//   // const unsubscribe = onSnapshot(query, (querySnapshot) => {querySnapshot.forEach((doc) => {data = doc.data()})});
 //   const q1 = query(collection(db, `For Sale`));
 //   const unsubscribe1 = onSnapshot(q1, (querySnapshot) => {
 //      const myMeetings = [];
 //      querySnapshot.forEach((doc) => {
-//             myMeetings.push(doc.data());
+//             myMeetings.push(doc.data().id);
 //           });
 //           setData(myMeetings);
 //         });
-//  });
+//  }, []);
  
   // db.collections("For Sale").get().then((querySnapshot) => {
   //   const users = [];
@@ -71,6 +75,7 @@ const HomeScreen = () => {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <Text>Home! </Text>
+        <Text>{data} </Text>
         {/* <Button
         title = "Read Data"
         onPress = {displayPhoto}/> */}

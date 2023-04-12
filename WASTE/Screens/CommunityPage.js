@@ -17,6 +17,10 @@ import AddItem from './AddItem';
 // import { Icon } from 'react-native-icons';
 import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 
+import { db, auth, dbb } from "../Firebase"
+// import { doc, updateDoc, setDoc, addDoc, deleteDoc } from "firebase/firestore"
+import { collection, onSnapshot, query, getDoc, doc } from "firebase/firestore";
+
 
 const ListItem = ({ item, filter }) => {
   const navigation = useNavigation();
@@ -102,9 +106,33 @@ export default CommunityScreen = () => {
   const CE = 'CE';
   const All = 1;
 
+  const [data, setData] = useState(null);
+  const [id, setID] = useState(null);
+  const [lastid, setLastid] = useState(null)
+
+  useEffect(() => {
+    // const query = query(collection(db, "For Sale"));
+    // const unsubscribe = onSnapshot(query, (querySnapshot) => {querySnapshot.forEach((doc) => {data = doc.data()})});
+    const q1 = query(collection(db, `For Sale`));
+    const unsubscribe1 = onSnapshot(q1, (querySnapshot) => {
+       const myMeetings = [];
+       querySnapshot.forEach((doc) => {
+              myMeetings.push(doc.data().id);
+            });
+            setID(myMeetings);
+          });
+   }, []);
   
   const addItem = () => {
-    navigation.navigate('New Item')
+    i = 0;
+    while(id[i]){
+      i++;
+    }
+    i--;
+    navigation.navigate('New Item', {
+      newid: id[i],
+  }
+    )
   }
   return (
     <View style={styles.container}>
@@ -480,7 +508,7 @@ backgroundColor: 'purple',
     left: 51.87,
     top: 15,
     
-    fontFamily: 'Inter',
+    // fontFamily: 'Inter',
     fontStyle: 'normal',
     // fontWeight: 400,
     fontSize: 12,
