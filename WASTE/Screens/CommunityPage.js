@@ -106,7 +106,13 @@ export default CommunityScreen = () => {
   const CE = 'CE';
   const All = 1;
 
-  const [data, setData] = useState(null);
+  const [device, setDevice] = useState(null);
+  const [cool, setCool] = useState(null);
+  const [light, setLight] = useState(null);
+  const [tv, setTv] = useState(null);
+  const [wire, setWire] = useState(null);
+  const [other, setOther] = useState(null);
+
   const [id, setID] = useState(null);
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
@@ -149,6 +155,50 @@ export default CommunityScreen = () => {
             setCond(myCond);
             setDesc(myDesc);
           });
+
+    i = 0;
+    iCED = 0;
+    iCE = 0;
+    iLED = 0;
+    iTMS = 0;
+    iW = 0;
+    iO = 0;
+    const CED = [];
+    const CE = [];
+    const LED = [];
+    const TMS = [];
+    const W = [];
+    const O = [];
+    if(id != null){
+    while(id[i]){
+      if(cat[i] == "CED"){
+        CED[iCED] = i;
+        setDevice(CED);
+        iCED++;
+      } else if(cat[i] == "CE"){
+        CE[iCE] = i;
+        setCool(CE);
+        iCE++;
+      } else if(cat[i] == "LED"){
+        LED[iLED] = i;
+        setLight(LED);
+        iLED++;
+      } else if(cat[i] == "TMS"){
+        TMS[iTMS] = i;
+        setTv(TMS);
+        iTMS++;
+      } else if(cat[i] == "W"){
+        W[iW] = i;
+        setWire(W);
+        iW++;
+      } else if(cat[i] == "O"){
+        O[iO] = i;
+        setOther(O);
+        iO++;
+      }
+      i++;
+    }
+  }
    }, []);
 
   const ListItem = ({ item }) => {
@@ -207,15 +257,6 @@ export default CommunityScreen = () => {
       <StatusBar style="light" />
       <SafeAreaView style={{ flex: 1 }}>
 
-      {/* <View style={styles.searchBar}>
-            <TextInput
-              style={styles.searchText}
-              placeholder="What are you looking for?"
-              onChangeText={newSearch => setSearch(newSearch)}
-              defaultValue={search} />
-          <Ionicons position='center' name="search" size={20} color="white" style={styles.searchIcon}></Ionicons>
-        </View> */}
-
         <SectionList
           contentContainerStyle={{ paddingHorizontal: 10 }}
           stickySectionHeadersEnabled={false}
@@ -229,51 +270,79 @@ export default CommunityScreen = () => {
                   renderItem={({ item }) => <ListItem item={item} />}
                   showsHorizontalScrollIndicator={false}
                 />
-              {/* <Text style={styles.sectionHeader2}>Cooling Equipment</Text>
-              {section.horizontal ? (
-                <FlatList
-                  horizontal
-                  data={section.data}
-                  renderItem={({ item }) => <ListCE item={item} />}
-                  showsHorizontalScrollIndicator={false}
-                />
-              ) : null}
-              <Text style={styles.sectionHeader2}>Wiring</Text>
-              {section.horizontal ? (
-                <FlatList
-                  horizontal
-                  data={section.data}
-                  renderItem={({ item }) => <ListW item={item} />}
-                  showsHorizontalScrollIndicator={false}
-                />
-              ) : null}
-                            {section.horizontal ? (
-                <FlatList
-                  horizontal
-                  data={section.data}
-                  renderItem={({ item }) => <ListW item={item} />}
-                  showsHorizontalScrollIndicator={false}
-                />
-              ) : null} */}
-            </>
-          )}
-          renderItem={({ item, section }) => {
-            if (item.category == "CE") {
-                <>
-                <Text style={styles.sectionHeader}>{section.title}</Text>
+                {device ? (
+                  <>
+                  <Text style={styles.sectionHeader2}>Consumer Electronic Devices</Text>
                   <FlatList
                     horizontal
-                    data={id}
+                    data={device}
                     renderItem={({ item }) => <ListItem item={item} />}
                     showsHorizontalScrollIndicator={false}
                   />
-              </>
-            }
-            // <Button title="ADD ITEM" style={styles.add} onPress={addItem}/>
+                  </>
+                ) : null}
 
-            // return <ListItem item={item} />;
-          }
-        }
+                {cool ? (
+                  <>
+                  <Text style={styles.sectionHeader2}>Cooling Equipment</Text>
+                  <FlatList
+                    horizontal
+                    data={cool}
+                    renderItem={({ item }) => <ListItem item={item} />}
+                    showsHorizontalScrollIndicator={false}
+                  />
+                  </>
+                ) : null}
+
+                {light ? (
+                  <>
+                  <Text style={styles.sectionHeader2}>LEDs</Text>
+                  <FlatList
+                    horizontal
+                    data={light}
+                    renderItem={({ item }) => <ListItem item={item} />}
+                    showsHorizontalScrollIndicator={false}
+                  />
+                  </>
+                ) : null}
+
+                {tv ? (
+                  <>
+                  <Text style={styles.sectionHeader2}>TVs, Monitors, and Screens</Text>
+                  <FlatList
+                    horizontal
+                    data={tv}
+                    renderItem={({ item }) => <ListItem item={item} />}
+                    showsHorizontalScrollIndicator={false}
+                  />
+                  </>
+                ) : null}
+
+                {wire ? (
+                  <>
+                  <Text style={styles.sectionHeader2}>Wiring Equipment</Text>
+                  <FlatList
+                    horizontal
+                    data={wire}
+                    renderItem={({ item }) => <ListItem item={item} />}
+                    showsHorizontalScrollIndicator={false}
+                  />
+                  </>
+                ) : null}
+
+                {other ? (
+                  <>
+                  <Text style={styles.sectionHeader2}>Other Items</Text>
+                  <FlatList
+                    horizontal
+                    data={other}
+                    renderItem={({ item }) => <ListItem item={item} />}
+                    showsHorizontalScrollIndicator={false}
+                  />
+                  </>
+                ) : null}
+            </>
+          )}
         />
       </SafeAreaView>
       </LinearGradient>
@@ -289,15 +358,6 @@ export default CommunityScreen = () => {
       <TouchableOpacity onPress={addItem} style={styles.add}>
         <Ionicons position='center' name="add" size={60} color="white" style={{left: 1}}></Ionicons>
       </TouchableOpacity>
-      {/* <TouchableHighlight
-        onPress={addItem} style={styles.add}
-        underlayColor='#042417'>
-        <View
-          style={styles.btnContainer}>
-          <Ionicons name="md-checkmark-circle" size={32} color="green"></Ionicons>
-          <Text style={styles.btnText}>Sign In with Facebook</Text>
-        </View>
-      </TouchableHighlight>  */}
     </View>
   );
 };
@@ -469,7 +529,7 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     fontSize: 18,
     color: '#f4f4f4',
-    marginTop: 20,
+    marginTop: 15,
     marginBottom: 5,
   },
   item: {
@@ -524,9 +584,9 @@ const styles = StyleSheet.create({
   itemCondition: {
 
 //     position: absolute,
-// width: 23,
-// height: 13,
-left: 112,
+width: 138,
+height: 13,
+left: 0,
 // top: 145,
 
 // fontFamily: 'Lato',
@@ -534,6 +594,7 @@ fontStyle: 'normal',
 fontWeight: 400,
 fontSize: 11,
 lineHeight: 13,
+textAlign: 'right',
 
 color: 'rgba(255, 255, 255, 0.47)',
   },

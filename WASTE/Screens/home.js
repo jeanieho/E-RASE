@@ -27,21 +27,21 @@ const HomeScreen = () => {
   //   setData(doc)
   //   }
 
-useEffect(() => {
+// useEffect(() => {
 
-  // FetchDoc();
-  const q1 = query(collection(db, `For Sale`));
-  const unsubscribe1 = onSnapshot(q1, (querySnapshot) => {
-     const myId = [];
-     const myName = [];
-     querySnapshot.forEach((doc) => {
-            myId.push(doc.data().id);
-            myName.push(doc.data().name);
-          });
-          setID(myId);
-          setData(myName);
-        });
- }, []);
+//   // FetchDoc();
+//   const q1 = query(collection(db, `For Sale`));
+//   const unsubscribe1 = onSnapshot(q1, (querySnapshot) => {
+//      const myId = [];
+//      const myName = [];
+//      querySnapshot.forEach((doc) => {
+//             myId.push(doc.data().id);
+//             myName.push(doc.data().name);
+//           });
+//           setID(myId);
+//           setData(myName);
+//         });
+//  }, []);
  
   // db.collections("For Sale").get().then((querySnapshot) => {
   //   const users = [];
@@ -82,8 +82,8 @@ useEffect(() => {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <Text>Home! </Text>
-        <Text>{id} </Text>
-        <Text>{data} </Text>
+        {/* <Text>{id} </Text> */}
+        {/* <Text>{data} </Text> */}
         {/* <Button
         title = "Read Data"
         onPress = {displayPhoto}/> */}

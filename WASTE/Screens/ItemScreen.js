@@ -91,7 +91,7 @@ backgroundColor: '#27242D',
     },
     itemName: {
         position: 'absolute',
-        width: 204,
+        width: 280,
         height: 29,
         left: 24,
         top: 20,
