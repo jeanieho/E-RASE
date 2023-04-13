@@ -14,9 +14,9 @@ import { useState, useEffect, useCallback} from 'react'
 
 export default ItemScreen = () => {
     const route = useRoute();
-    const {item} = route.params;
+    const {id, name, price, png, email, cat, cond, desc} = route.params;
     const navigation = useNavigation();
-    const png = item.uri;
+    // const png = item.uri;
     const [heart, setHeart] = useState('white');
 
     const changeColor = () => {
@@ -26,9 +26,9 @@ export default ItemScreen = () => {
     const sendEmail = async () => {
         if(MailComposer.isAvailableAsync()){
             MailComposer.composeAsync({
-                recipients: item.email,
-                subject: 'Buying ' + item.name,
-                body: 'I would like to buy ' + item.name + ' from you!',
+                recipients: email,
+                subject: 'Buying ' + name,
+                body: 'I would like to buy ' + name + ' from you!',
             });
         }
       }
@@ -38,14 +38,14 @@ export default ItemScreen = () => {
         <Image style={styles.itempic} source={{uri: png}}></Image>
         <View style={styles.descbox}>
             <Image style={styles.profpic} source={{uri: 'https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg'}}></Image>
-            <Text style={styles.itemName}>{item.name}</Text>
-            <Text style={styles.price}>${item.price}</Text>
+            <Text style={styles.itemName}>{name}</Text>
+            <Text style={styles.price}>${price}</Text>
             <Text style={styles.date}>Listed 2 days ago 5 mi away</Text>
             <Text style={styles.name}>Peter Porker</Text>
             <Text style={styles.verified}>Verified Seller</Text>
             <Text style={styles.details}>Details</Text>
-            <Text style={styles.condition}>Condition: Lightly used</Text>
-            <Text style={styles.description}>{item.description}</Text>
+            <Text style={styles.condition}>Condition: {cond}</Text>
+            <Text style={styles.description}>{desc}</Text>
             <Ionicons position='center' name="checkmark-circle" size={20} color="white" style={styles.verifIcon}></Ionicons>
             <TouchableOpacity style={styles.heartBubble} onPress={changeColor}>
                 <Ionicons position='center' name="heart" size={30} color={heart} style={styles.heart}></Ionicons>

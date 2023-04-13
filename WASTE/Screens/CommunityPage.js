@@ -22,29 +22,29 @@ import { db, auth, dbb } from "../Firebase"
 import { collection, onSnapshot, query, getDoc, doc } from "firebase/firestore";
 
 
-const ListItem = ({ item, filter }) => {
-  const navigation = useNavigation();
+// const ListItem = ({ item }) => {
+//   const navigation = useNavigation();
 
-  const itemDescription = () => {
-    navigation.navigate('Item', 
-    {item: item})
-  }
+//   const itemDescription = () => {
+//     navigation.navigate('Item', 
+//     {item: item})
+//   }
 
-    return (
-    <TouchableOpacity onPress={itemDescription} style={styles.item}>
-      <Image
-        source={{
-          uri: item.uri,
-        }}
-        style={styles.itemPhoto}
-        resizeMode="cover"
-      />
-      <Text style={styles.itemName}>{item.text}</Text>
-      <Text style={styles.itemPrice}>{item.price}</Text>
-      <Text style={styles.itemCondition}>used</Text>
-    </TouchableOpacity>
-  );
-};
+//     return (
+//     <TouchableOpacity onPress={itemDescription} style={styles.item}>
+//       <Image
+//         source={{
+//           uri: item.uri,
+//         }}
+//         style={styles.itemPhoto}
+//         resizeMode="cover"
+//       />
+//       <Text style={styles.itemName}>{item.text}</Text>
+//       <Text style={styles.itemPrice}>{item.price}</Text>
+//       <Text style={styles.itemCondition}>used</Text>
+//     </TouchableOpacity>
+//   );
+// };
 
 const ListCE = ({ item, filter }) => {
   if(item.category == "CE"){
@@ -108,20 +108,83 @@ export default CommunityScreen = () => {
 
   const [data, setData] = useState(null);
   const [id, setID] = useState(null);
-  const [lastid, setLastid] = useState(null)
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
+  const [png, setPng] = useState("");
+  const [email, setEmail] = useState("");
+  const [cat, setCat] = useState("");
+  const [cond, setCond] = useState("");
+  const [desc, setDesc] = useState("");
+  const [lastid, setLastid] = useState("");
 
   useEffect(() => {
     // const query = query(collection(db, "For Sale"));
     // const unsubscribe = onSnapshot(query, (querySnapshot) => {querySnapshot.forEach((doc) => {data = doc.data()})});
     const q1 = query(collection(db, `For Sale`));
     const unsubscribe1 = onSnapshot(q1, (querySnapshot) => {
-       const myMeetings = [];
+       const myId = [];
+       const myName = [];
+       const myPrice = [];
+       const myPng = [];
+       const myEmail = [];
+       const myCat = [];
+       const myCond = [];
+       const myDesc = [];
        querySnapshot.forEach((doc) => {
-              myMeetings.push(doc.data().id);
+              myId.push(doc.data().id);
+              myName.push(doc.data().name);
+              myPrice.push(doc.data().price);
+              myPng.push(doc.data().png);
+              myEmail.push(doc.data().email);
+              myCat.push(doc.data().categoryValue);
+              myCond.push(doc.data().conditionValue);
+              myDesc.push(doc.data().description);
             });
-            setID(myMeetings);
+            setID(myId);
+            setName(myName);
+            setPrice(myPrice);
+            setPng(myPng);
+            setEmail(myEmail);
+            setCat(myCat);
+            setCond(myCond);
+            setDesc(myDesc);
           });
    }, []);
+
+  const ListItem = ({ item }) => {
+    const navigation = useNavigation();
+    const numid = Number(item);
+  
+    const itemDescription = () => {
+      navigation.navigate('Item', {
+      id: id[numid],
+      name: name[numid],
+      price: price[numid],
+      png: png[numid],
+      email: email[numid],
+      cat: cat[numid],
+      cond: cond[numid],
+      desc: desc[numid],
+      })
+    }
+  
+      return (
+      <TouchableOpacity onPress={itemDescription} style={styles.item}>
+       <Image
+          source={{
+            uri: png[numid],
+          }}
+          style={styles.itemPhoto}
+          resizeMode="cover"
+        />
+         <Text style={styles.itemName}>{name[numid]}</Text>
+         <Text style={styles.itemPrice}>{price[numid]}</Text>
+         <Text style={styles.itemCondition}>{cond[numid]}</Text>
+      </TouchableOpacity>
+      // <Text>{id[item]}</Text>
+    );
+  };
+
   
   const addItem = () => {
     i = 0;
@@ -160,15 +223,13 @@ export default CommunityScreen = () => {
           renderSectionHeader={({ section }) => (
             <>
               <Text style={styles.sectionHeader}>{section.title}</Text>
-              {section.horizontal ? (
                 <FlatList
                   horizontal
-                  data={section.data}
-                  renderItem={({ item, All }) => <ListItem item={item} />}
+                  data={id}
+                  renderItem={({ item }) => <ListItem item={item} />}
                   showsHorizontalScrollIndicator={false}
                 />
-              ) : null}
-              <Text style={styles.sectionHeader2}>Cooling Equipment</Text>
+              {/* <Text style={styles.sectionHeader2}>Cooling Equipment</Text>
               {section.horizontal ? (
                 <FlatList
                   horizontal
@@ -193,21 +254,19 @@ export default CommunityScreen = () => {
                   renderItem={({ item }) => <ListW item={item} />}
                   showsHorizontalScrollIndicator={false}
                 />
-              ) : null}
+              ) : null} */}
             </>
           )}
           renderItem={({ item, section }) => {
             if (item.category == "CE") {
                 <>
                 <Text style={styles.sectionHeader}>{section.title}</Text>
-                {section.horizontal ? (
                   <FlatList
                     horizontal
-                    data={section.data}
+                    data={id}
                     renderItem={({ item }) => <ListItem item={item} />}
                     showsHorizontalScrollIndicator={false}
                   />
-                ) : null}
               </>
             }
             // <Button title="ADD ITEM" style={styles.add} onPress={addItem}/>
