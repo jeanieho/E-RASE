@@ -133,10 +133,23 @@ export default NewItemScreen = () => {
             defaultValue={name} />
         </View>
         <Text style={styles.catText}>Category</Text>
+        <Text style={styles.descText}>Description</Text>
+        <View style={styles.descBub}>
+          <TextInput
+            // editable='true'
+            multiline={true}
+            blurOnSubmit={true}
+            numberOfLines={10}
+            style={styles.descInput}
+            placeholder="128 GB storage, etc."
+            placeholderTextColor='rgba(255, 255, 255, 0.42)'
+            onChangeText={newDesc => setDescription(newDesc)}
+            defaultValue={description} />
+        </View>        
         <View style={styles.catView}>
           <DropDownPicker
               style={styles.catBub}
-              dropDownContainerStyle={{backgroundColor: 'rgba(200, 76, 242, 0.72)'}}
+              dropDownContainerStyle={{backgroundColor: 'rgba(200, 76, 242, 1)'}}
               open={categoryOpen}
               value={categoryValue} //genderValue
               items={category}
@@ -156,7 +169,7 @@ export default NewItemScreen = () => {
           <View style={styles.condView}> 
                   <DropDownPicker
               style={styles.condBub}
-              dropDownContainerStyle={{backgroundColor: 'rgba(200, 76, 242, 0.72)'}}
+              dropDownContainerStyle={{backgroundColor: 'rgba(200, 76, 242, 1)'}}
               open={conditionOpen}
               value={conditionValue} //genderValue
               items={condition}
@@ -172,19 +185,7 @@ export default NewItemScreen = () => {
               zIndexInverse={1000}
             />        
         </View>     
-        <Text style={styles.descText}>Description</Text>
-        <View style={styles.descBub}>
-          <TextInput
-            // editable='true'
-            multiline={true}
-            blurOnSubmit={true}
-            numberOfLines={10}
-            style={styles.descInput}
-            placeholder="128 GB storage, etc."
-            placeholderTextColor='rgba(255, 255, 255, 0.42)'
-            onChangeText={newDesc => setDescription(newDesc)}
-            defaultValue={description} />
-        </View>
+
         <Text style={styles.priceText}>Price</Text>
         <View style={styles.priceBub}>
           <TextInput
@@ -402,7 +403,7 @@ const styles = StyleSheet.create({
       fontSize: 13,
       // lineHeight: 100,
       
-      color: 'rgba(255, 255, 255, 0.42)',
+      color: 'rgba(255, 255, 255, .42)',
     },
     condView: {
       position: 'absolute',
@@ -468,7 +469,7 @@ const styles = StyleSheet.create({
       left: 24,
       top: 351,
       
-      fontFamily: 'Lato',
+      // fontFamily: 'Lato',
       fontStyle: 'normal',
       fontWeight: '600',
       fontSize: 16,
