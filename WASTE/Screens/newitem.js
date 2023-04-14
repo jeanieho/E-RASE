@@ -11,6 +11,8 @@ import * as ImagePicker from 'expo-image-picker';
 import * as FileSystem from 'expo-file-system';
 import * as MediaLibrary from 'expo-media-library'
 import { LinearGradient } from 'expo-linear-gradient';
+import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
+
 
 
 
@@ -103,10 +105,7 @@ export default NewItemScreen = () => {
         setPng(ppng);
   }
   const choosePress = () => {
-    // navigation.navigate('Select Photo', {
-    //     itemID: 12,
-    //     param: 52,
-    // })
+    navigation.navigate('Community')
   }
   const finalPress = async () => {
     // navigation.navigate('Add Item')
@@ -145,11 +144,36 @@ export default NewItemScreen = () => {
             placeholderTextColor='rgba(255, 255, 255, 0.42)'
             onChangeText={newDesc => setDescription(newDesc)}
             defaultValue={description} />
-        </View>        
+        </View> 
+
+      <Text style={styles.photoText}>Add a Photo</Text>
+      <View style={styles.takeBub}>
+        <TouchableOpacity  onPress={photoPress}>
+          <Text style={styles.photoTake}>Take a Photo</Text>
+          <Ionicons position='center' name='camera' size={18} color='white' style={styles.takeIcon}></Ionicons>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.selBub}>
+        <TouchableOpacity  onPress={pickImage}>
+          <Text style={styles.photoSelect}>Choose a Photo</Text>
+          <Ionicons position='center' name='arrow-up' size={18} color='white' style={styles.selIcon}></Ionicons>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.cancelBub}>
+        <TouchableOpacity  onPress={finalPress}>
+          <Text style={styles.postText}>Cancel</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.postBub}>
+        <TouchableOpacity  onPress={choosePress}>
+          <Text style={styles.postText}>Post</Text>
+        </TouchableOpacity>
+      </View>        
+
         <View style={styles.catView}>
           <DropDownPicker
               style={styles.catBub}
-              dropDownContainerStyle={{backgroundColor: 'rgba(200, 76, 242, 1)'}}
+              dropDownContainerStyle={{backgroundColor: 'rgba(200, 76, 242, 1)', height: 160}}
               open={categoryOpen}
               value={categoryValue} //genderValue
               items={category}
@@ -169,7 +193,7 @@ export default NewItemScreen = () => {
           <View style={styles.condView}> 
                   <DropDownPicker
               style={styles.condBub}
-              dropDownContainerStyle={{backgroundColor: 'rgba(200, 76, 242, 1)'}}
+              dropDownContainerStyle={{backgroundColor: 'rgba(200, 76, 242, 1)', height: 160}}
               open={conditionOpen}
               value={conditionValue} //genderValue
               items={condition}
@@ -206,6 +230,10 @@ export default NewItemScreen = () => {
             defaultValue={email} />
         </View>
 
+
+
+      
+      {/* <Button
       {/* <Button
         title="Take a Photo"
         onPress={photoPress}
@@ -252,7 +280,7 @@ const styles = StyleSheet.create({
       width: 207,
       // height: 60,
       left: 91,
-      top: 123,
+      top: 73,
       
       // fontFamily: 'Lato',
       fontStyle: 'normal',
@@ -271,7 +299,7 @@ const styles = StyleSheet.create({
       width: 84,
       // height: 56,
       left: 24,
-      top: 183,
+      top: 133,
       
       // fontFamily: 'Lato',
       fontStyle: 'normal',
@@ -309,7 +337,7 @@ const styles = StyleSheet.create({
       width: 353,
       height: 31,
       left: 21,
-      top: 210,
+      top: 160,
       
       backgroundColor: 'rgba(200, 76, 242, 0.72)',
       // box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -320,7 +348,7 @@ const styles = StyleSheet.create({
       width: 73,
       // height: 16,
       left: 24,
-      top: 266,
+      top: 492,
       
       // fontFamily: 'Lato',
       fontStyle: 'normal',
@@ -349,7 +377,7 @@ const styles = StyleSheet.create({
       width: 199,
       height: 31,
       left: 21,
-      top: 294,
+      top: 519,
       
       // backgroundColor: 'rgba(200, 76, 242, 0.72)',
       // box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -365,7 +393,7 @@ const styles = StyleSheet.create({
       width: 83,
       // height: 16,
       left: 241,
-      top: 266,
+      top: 492,
       
       // fontFamily: 'Lato',
       fontStyle: 'normal',
@@ -410,7 +438,7 @@ const styles = StyleSheet.create({
       width: 133,
       height: 50,
       left: 239,
-      top: 294,
+      top: 519,
       
       // backgroundColor: 'rgba(200, 76, 242, 0.72)',
       // box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -426,7 +454,7 @@ const styles = StyleSheet.create({
       width: 78,
       // height: 16,
       left: 245,
-      top: 542,
+      top: 216,
       
       // fontFamily: 'Lato',
       fontStyle: 'normal',
@@ -456,7 +484,7 @@ const styles = StyleSheet.create({
       width: 133,
       height: 31,
       left: 241,
-      top: 569,
+      top: 244,
       
       backgroundColor: 'rgba(200, 76, 242, 0.72)',
       // box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -467,7 +495,7 @@ const styles = StyleSheet.create({
       width: 103,
       // height: 15.72,
       left: 24,
-      top: 351,
+      top: 301,
       
       // fontFamily: 'Lato',
       fontStyle: 'normal',
@@ -498,7 +526,7 @@ const styles = StyleSheet.create({
       width: 353,
       height: 143.48,
       left: 21,
-      top: 378.52,
+      top: 328.52,
       
       backgroundColor: 'rgba(200, 76, 242, 0.72)',
       // box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -509,7 +537,7 @@ const styles = StyleSheet.create({
       width: 78,
       // height: 16,
       left: 24,
-      top: 542,
+      top: 216,
       
       // fontFamily: 'Lato',
       fontStyle: 'normal',
@@ -539,20 +567,126 @@ const styles = StyleSheet.create({
       width: 199,
       height: 31,
       left: 18,
-      top: 569,
+      top: 244,
       
       backgroundColor: 'rgba(200, 76, 242, 0.72)',
       // box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
       borderRadius: 5,
     },
     photoText: {
+      position: 'absolute',
+      width: 103,
+      height: 16,
+      left: 21,
+      top: 596,
+      
+      // fontFamily: 'Lato',
+      fontStyle: 'normal',
+      fontWeight: '600',
+      fontSize: 16,
+      
+      color: '#FFFFFF',
     },
-    photoSelect: {},
-    selBub: {},
-    photoTake: {},
-    takeBub: {},
-    cancel: {},
-    post: {},
+    photoSelect: {
+        position: 'absolute',
+        // width: 79,
+        // height: 13,
+        left: 11,
+        top: 7,
+        
+        // fontFamily: 'Lato',
+        fontStyle: 'normal',
+        fontWeight: '500',
+        fontSize: 13,
+        
+        color: 'rgba(255, 255, 255, 0.42)',
+    },
+    selBub: {
+      position: 'absolute',
+      width: 164,
+      height: 31,
+      left: 207,
+      top: 625,
+      
+      backgroundColor: 'rgba(200, 76, 242, 0.72)',
+      // box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      borderRadius: 5,
+    },
+    selIcon: {
+      position: 'absolute',
+      width: 18,
+      height: 18,
+      left: 140,
+      top: 7,
+    },
+    photoTake: {
+      position: 'absolute',
+      // width: 79,
+      // height: 13,
+      left: 11,
+      top: 7,
+      
+      // fontFamily: 'Lato',
+      fontStyle: 'normal',
+      fontWeight: '500',
+      fontSize: 13,
+      
+      color: 'rgba(255, 255, 255, 0.42)',
+    },
+    takeBub: {
+      position: 'absolute',
+      width: 164,
+      height: 31,
+      left: 18,
+      top: 625,
+      
+      backgroundColor: 'rgba(200, 76, 242, 0.72)',
+      // box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      borderRadius: 5,
+    },
+    takeIcon: {
+      position: 'absolute',
+      width: 18,
+      height: 18,
+      left: 140,
+      top: 7,
+    },
+    cancelBub: {
+      position: 'absolute',
+      width: 165,
+      height: 30,
+      left: 18,
+      top: 685,
+      backgroundColor: 'rgba(255, 255, 255, 0.33)',
+      borderColor: '#FFFCFC',
+      borderRadius: 5,
+    },
+    postBub: {
+      position: 'absolute',
+      width: 165,
+      height: 30,
+      left: 206,
+      top: 685,
+      backgroundColor: '#A134CD',
+      borderColor: '#FFFCFC',
+      borderRadius: 5,
+    },
+
+    postText: {
+      position: 'absolute',
+      width: 165,
+      height: 30,
+      // left: 262,
+      top: 8,
+      
+      // fontFamily: 'Lato',
+      fontStyle: 'normal',
+      fontWeight: '600',
+      fontSize: 13,
+      textAlign: 'center',
+      
+      color: '#FFFFFF',
+    },
 
     container: {
       flex: 1,
