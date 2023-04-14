@@ -169,6 +169,53 @@ export default CommunityScreen = () => {
     const TMS = [];
     const W = [];
     const O = [];
+    while(id != null){
+    while(id[i]){
+      if(cat[i] == "CED"){
+        CED[iCED] = i;
+        setDevice(CED);
+        iCED++;
+      } else if(cat[i] == "CE"){
+        CE[iCE] = i;
+        setCool(CE);
+        iCE++;
+      } else if(cat[i] == "LED"){
+        LED[iLED] = i;
+        setLight(LED);
+        iLED++;
+      } else if(cat[i] == "TMS"){
+        TMS[iTMS] = i;
+        setTv(TMS);
+        iTMS++;
+      } else if(cat[i] == "W"){
+        W[iW] = i;
+        setWire(W);
+        iW++;
+      } else if(cat[i] == "O"){
+        O[iO] = i;
+        setOther(O);
+        iO++;
+      }
+      i++;
+    }
+  }
+  // Catalogs();
+   }, []);
+
+  function Catalogs(){
+    i = 0;
+    iCED = 0;
+    iCE = 0;
+    iLED = 0;
+    iTMS = 0;
+    iW = 0;
+    iO = 0;
+    const CED = [];
+    const CE = [];
+    const LED = [];
+    const TMS = [];
+    const W = [];
+    const O = [];
     if(id != null){
     while(id[i]){
       if(cat[i] == "CED"){
@@ -199,7 +246,7 @@ export default CommunityScreen = () => {
       i++;
     }
   }
-   }, []);
+  }
 
   const ListItem = ({ item }) => {
     const navigation = useNavigation();
@@ -343,6 +390,20 @@ export default CommunityScreen = () => {
                 ) : null}
             </>
           )}
+          renderItem={({ item, section }) => {
+            if (item.category == "CE") {
+                <>
+                <Text style={styles.sectionHeader}>{section.title}</Text>
+                  <FlatList
+                    horizontal
+                    data={id}
+                    renderItem={({ item }) => <ListItem item={item} />}
+                    showsHorizontalScrollIndicator={false}
+                  />
+              </>
+            }
+          }
+        }
         />
       </SafeAreaView>
       </LinearGradient>

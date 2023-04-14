@@ -10,6 +10,8 @@ import {useForm, Controller} from 'react-hook-form';
 import * as ImagePicker from 'expo-image-picker';
 import * as FileSystem from 'expo-file-system';
 import * as MediaLibrary from 'expo-media-library'
+import { LinearGradient } from 'expo-linear-gradient';
+
 
 
 import { db, auth } from "../Firebase"
@@ -115,93 +117,442 @@ export default NewItemScreen = () => {
   }
   return (
     // <ScrollView>
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Item Name: </Text>
-      <TextInput
-      style={{height: 40}}
-      placeholder="Add an Item"
-      onChangeText={newName => setName(newName)}
-      defaultValue={name} />
-    <Text>{id}</Text>
-    <Text>Category</Text>
- 
-
-            <DropDownPicker
-              style={styles.dropdown}
+    <View style={styles.container}>
+        <LinearGradient
+          colors={['black', 'purple', 'black' ]}
+          style={styles.linearGradient}
+        >
+        <Text style={styles.title}>E-RASE your item</Text>
+        <Text style={styles.nameText}>Item name</Text>
+        <View style={styles.nameBub}>
+          <TextInput
+            style={styles.nameInput}
+            placeholder="Add an Item"
+            placeholderTextColor='rgba(255, 255, 255, 0.42)'
+            onChangeText={newName => setName(newName)}
+            defaultValue={name} />
+        </View>
+        <Text style={styles.catText}>Category</Text>
+        <View style={styles.catView}>
+          <DropDownPicker
+              style={styles.catBub}
+              dropDownContainerStyle={{backgroundColor: 'rgba(200, 76, 242, 0.72)'}}
               open={categoryOpen}
               value={categoryValue} //genderValue
               items={category}
               setOpen={setCategoryOpen}
               setValue={setCategoryValue}
               setItems={setCategory}
-              placeholder="Select Category"
-              placeholderStyle={styles.placeholderStyles}
+              placeholder="Select Category"   
+              textStyle = {styles.dropdownChoice}
+              placeholderStyle={styles.catInput}
             // //   onOpen={onGenderOpen}
             //   onChangeValue={onChange}
               zIndex={3000}
               zIndexInverse={1000}
-            />
-                <Text>Condition</Text>
-
+          />
+        </View>
+        <Text style={styles.condText}>Condition</Text>
+          <View style={styles.condView}> 
                   <DropDownPicker
-              style={styles.dropdown}
+              style={styles.condBub}
+              dropDownContainerStyle={{backgroundColor: 'rgba(200, 76, 242, 0.72)'}}
               open={conditionOpen}
               value={conditionValue} //genderValue
               items={condition}
               setOpen={setConditionOpen}
               setValue={setConditionValue}
               setItems={setCondition}
-              placeholder="Select Condition"
-              placeholderStyle={styles.placeholderStyles}
+              placeholder="Condition"
+              textStyle = {styles.dropdownChoice}
+              placeholderStyle={styles.condInput}
             // //   onOpen={onGenderOpen}
             //   onChangeValue={onChange}
               zIndex={3000}
               zIndexInverse={1000}
-            />
-      <Text>Price: </Text>
-      <TextInput
-      style={{height: 40}}
-      placeholder="Add a Price"
-      onChangeText={newPrice => setPrice(newPrice)}
-      defaultValue={price} />
+            />        
+        </View>     
+        <Text style={styles.descText}>Description</Text>
+        <View style={styles.descBub}>
+          <TextInput
+            // editable='true'
+            multiline={true}
+            blurOnSubmit={true}
+            numberOfLines={10}
+            style={styles.descInput}
+            placeholder="128 GB storage, etc."
+            placeholderTextColor='rgba(255, 255, 255, 0.42)'
+            onChangeText={newDesc => setDescription(newDesc)}
+            defaultValue={description} />
+        </View>
+        <Text style={styles.priceText}>Price</Text>
+        <View style={styles.priceBub}>
+          <TextInput
+            style={styles.priceInput}
+            placeholder="$100"
+            placeholderTextColor='rgba(255, 255, 255, 0.42)'
+            onChangeText={newName => setPrice(newName)}
+            defaultValue={price} />
+        </View>
 
-      <Text>Description: </Text>
-      <TextInput
-      style={{height: 40}}
-      placeholder="Add a Description"
-      onChangeText={newDescription => setDescription(newDescription)}
-      defaultValue={description} />
+      <Text style={styles.mailText}>Email</Text>
+      <View style={styles.mailBub}>
+          <TextInput
+            style={styles.mailInput}
+            placeholder="peterporker@gmail.com"
+            placeholderTextColor='rgba(255, 255, 255, 0.42)'
+            onChangeText={newName => setEmail(newName)}
+            defaultValue={email} />
+        </View>
 
-      <Text>Email: </Text>
-      <TextInput
-      style={{height: 40}}
-      placeholder="Add Your Email"
-      onChangeText={newEmail => setEmail(newEmail)}
-      defaultValue={email} />
-
-      <Button
+      {/* <Button
         title="Take a Photo"
         onPress={photoPress}
-      />
-      <Button title="Pick an image from camera roll" onPress={pickImage} />
+      /> */}
+      {/* <Button title="Pick an image from camera roll" onPress={pickImage} /> */}
       {/* <Text>{png}</Text> */}
-      <Image source={{uri: png}} style={{ width: 200, height: 200 }} />
+      {/* <Image source={{uri: png}} style={{ width: 200, height: 200 }} /> */}
       {/* <Button
         title="Testing"
         onPress={choosePress}
       /> */}
-      <Button
+      {/* <Button
         title="Submit Listing"
         onPress={finalPress}
-      />
+      /> */}
       {/* <Text>{image}</Text> */}
       {/* {image && <Image source={{uri: image}} style={{flex:1, flexDirection: 'row',}}/>} */}
+       
+      </LinearGradient>
     </View>
   //  {/* </ScrollView> */}
   );
 }
 
 const styles = StyleSheet.create({
+    container: {
+    position: 'absolute',
+    width: 390,
+    height: 844,
+    left: 0,
+    top: 3,
+    // LinearGradient: '#6F2282',
+    },
+    linearGradient: {
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: 390,
+      height: 844,
+      left: 0,
+      top: -5,
+    },
+    title: {
+      position: 'absolute',
+      width: 207,
+      // height: 60,
+      left: 91,
+      top: 123,
+      
+      // fontFamily: 'Lato',
+      fontStyle: 'normal',
+      fontWeight: '700',
+      fontSize: 24,
+      // lineHeight: 100,
+      /* identical to box height, or 24px */
+      
+      textAlign: 'center',
+      letterSpacing: 0.05,
+      
+      color: '#FFFFFF',
+    },
+    nameText: {
+      position: 'absolute',
+      width: 84,
+      // height: 56,
+      left: 24,
+      top: 183,
+      
+      // fontFamily: 'Lato',
+      fontStyle: 'normal',
+      fontWeight: '600',
+      fontSize: 16,
+      // lineHeight: 100,
+      /* identical to box height, or 16px */
+      
+      textAlign: 'center',
+      letterSpacing: 0.07,
+      
+      color: '#FFFFFF',
+    },
+    nameInput: {
+      position: 'absolute',
+      // width: 72,
+      // height: 13,
+      left: 12,
+      top: 8,
+      
+      // fontFamily: 'Lato',
+      fontStyle: 'normal',
+      fontWeight: '500',
+      fontSize: 13,
+      // lineHeight: 100,
+      /* identical to box height, or 13px */
+      
+      // textAlign: 'center',
+      // letterSpacing: 0.04,
+      
+      color: 'rgba(255, 255, 255, 0.42)',
+    },
+    nameBub: {
+      position: 'absolute',
+      width: 353,
+      height: 31,
+      left: 21,
+      top: 210,
+      
+      backgroundColor: 'rgba(200, 76, 242, 0.72)',
+      // box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      borderRadius: 5,
+    },
+    catText: {
+      position: 'absolute',
+      width: 73,
+      // height: 16,
+      left: 24,
+      top: 266,
+      
+      // fontFamily: 'Lato',
+      fontStyle: 'normal',
+      fontWeight: '600',
+      fontSize: 16,
+      // lineHeight: 100,
+      color: '#FFFFFF',
+    },
+    catInput: {
+      position: 'absolute',
+      width: 134,
+      // height: 13,
+      left: 52,
+      // top: 303,
+      
+      // fontFamily: 'Lato',
+      fontStyle: 'normal',
+      fontWeight: '500',
+      fontSize: 13,
+      // lineHeight: 100,
+      
+      color: 'rgba(255, 255, 255, 0.42)',
+    },
+    catView: {
+      position: 'absolute',
+      width: 199,
+      height: 31,
+      left: 21,
+      top: 294,
+      
+      // backgroundColor: 'rgba(200, 76, 242, 0.72)',
+      // box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      borderRadius: 5,
+    },
+    catBub: {
+      borderColor: 'rgba(200, 76, 242, 0.72)',
+      height: 31,
+      backgroundColor: 'rgba(200, 76, 242, .72)',
+    },
+    condText: {
+      position: 'absolute',
+      width: 83,
+      // height: 16,
+      left: 241,
+      top: 266,
+      
+      // fontFamily: 'Lato',
+      fontStyle: 'normal',
+      fontWeight: '600',
+      fontSize: 16,
+      // lineHeight: 100,
+      
+      color: '#FFFFFF',
+    },
+    condInput: {
+      position: 'absolute',
+      width: 100,
+      // height: 13,
+      left: 47,
+      // top: 303,
+      
+      // fontFamily: 'Lato',
+      fontStyle: 'normal',
+      fontWeight: '500',
+      fontSize: 13,
+      // lineHeight: 100,
+      
+      color: 'rgba(255, 255, 255, 0.42)',
+    },
+    dropdownChoice: {
+      // position: 'absolute',
+      // width: 100,
+      // height: 13,
+      // left: 47,
+      // top: 303,
+      
+      // fontFamily: 'Lato',
+      fontStyle: 'normal',
+      fontWeight: '500',
+      fontSize: 13,
+      // lineHeight: 100,
+      
+      color: 'rgba(255, 255, 255, 0.42)',
+    },
+    condView: {
+      position: 'absolute',
+      width: 133,
+      height: 50,
+      left: 239,
+      top: 294,
+      
+      // backgroundColor: 'rgba(200, 76, 242, 0.72)',
+      // box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      borderRadius: 5,
+    },
+    condBub: {
+      borderColor: 'rgba(200, 76, 242, 0.72)',
+      height: 31,
+      backgroundColor: 'rgba(200, 76, 242, 0.72)',
+    },
+    priceText: {
+      position: 'absolute',
+      width: 78,
+      // height: 16,
+      left: 245,
+      top: 542,
+      
+      // fontFamily: 'Lato',
+      fontStyle: 'normal',
+      fontWeight: '600',
+      fontSize: 16,
+      // lineHeight: 100,
+      
+      color: '#FFFFFF',
+    },
+    priceInput: {
+      position: 'absolute',
+      width: 111,
+      // height: 13,
+      left: 11,
+      top: 8,
+      
+      // fontFamily: 'Lato',
+      fontStyle: 'normal',
+      fontWeight: '500',
+      fontSize: 13,
+      // lineHeight: 100,
+      
+      color: 'rgba(255, 255, 255, 0.42)',
+    },
+    priceBub: {
+      position: 'absolute',
+      width: 133,
+      height: 31,
+      left: 241,
+      top: 569,
+      
+      backgroundColor: 'rgba(200, 76, 242, 0.72)',
+      // box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      borderRadius: 5,
+    },
+    descText: {
+      position: 'absolute',
+      width: 103,
+      // height: 15.72,
+      left: 24,
+      top: 351,
+      
+      fontFamily: 'Lato',
+      fontStyle: 'normal',
+      fontWeight: '600',
+      fontSize: 16,
+      // lineHeight: 100,
+      
+      color: '#FFFFFF',
+    },
+    descInput: {
+      position: 'absolute',
+      width: 329,
+      // height: 127.8,
+      left: 12,
+      top: 7.86,
+      flexWrap: "wrap",
+      overflow: "scroll",
+
+// fontFamily: 'Lato',
+      fontStyle: 'normal',
+      fontWeight: '500',
+      fontSize: 13,
+      // lineHeight: 100,
+      color: 'rgba(255, 255, 255, 0.42)',
+    },
+    descBub: {
+      position: 'absolute',
+      width: 353,
+      height: 143.48,
+      left: 21,
+      top: 378.52,
+      
+      backgroundColor: 'rgba(200, 76, 242, 0.72)',
+      // box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      borderRadius: 5,
+    },
+    mailText: {
+      position: 'absolute',
+      width: 78,
+      // height: 16,
+      left: 24,
+      top: 542,
+      
+      // fontFamily: 'Lato',
+      fontStyle: 'normal',
+      fontWeight: '600',
+      fontSize: 16,
+      // lineHeight: 100,
+      
+      color: '#FFFFFF',
+    },
+    mailInput: {
+      position: 'absolute',
+      width: 177,
+      // height: 13,
+      left: 11,
+      top: 8,
+      
+      // fontFamily: 'Lato',
+      fontStyle: 'normal',
+      fontWeight: '500',
+      fontSize: 13,
+      // lineHeight: 100,
+      
+      color: 'rgba(255, 255, 255, 0.42)',
+    },
+    mailBub: {
+      position: 'absolute',
+      width: 199,
+      height: 31,
+      left: 18,
+      top: 569,
+      
+      backgroundColor: 'rgba(200, 76, 242, 0.72)',
+      // box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      borderRadius: 5,
+    },
+    photoText: {
+    },
+    photoSelect: {},
+    selBub: {},
+    photoTake: {},
+    takeBub: {},
+    cancel: {},
+    post: {},
+
     container: {
       flex: 1,
     },
@@ -229,11 +580,12 @@ const styles = StyleSheet.create({
     },
     dropdownGender: {
       marginHorizontal: 10,
-      width: "50%",
+      width: 100,
       marginBottom: 15,
     },
     dropdownCompany: {
       marginHorizontal: 10,
+      width: 100,
       marginBottom: 15,
     },
     dropdown: {
@@ -242,25 +594,6 @@ const styles = StyleSheet.create({
       width: 200,
       height: 50,
       textAlign: "center",
-    },
-    getStarted: {
-      backgroundColor: "#5188E3",
-      color: "white",
-      textAlign: "center",
-      marginHorizontal: 60,
-      paddingVertical: 15,
-      borderRadius: 50,
-      marginTop: 20,
-    },
-    logIn: {
-      flex: 1,
-      justifyContent: "flex-end",
-      marginBottom: 10,
-    },
-    links: {
-      textAlign: "center",
-      textDecorationLine: "underline",
-      color: "#758580",
     },
   });
   

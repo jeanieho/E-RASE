@@ -27,8 +27,8 @@ export default ItemScreen = () => {
         if(MailComposer.isAvailableAsync()){
             MailComposer.composeAsync({
                 recipients: email,
-                subject: 'Buying ' + name,
-                body: 'I would like to buy ' + name + ' from you!',
+                subject: 'Buying your ' + name,
+                body: 'I would like to buy your' + name + ' !',
             });
         }
       }
