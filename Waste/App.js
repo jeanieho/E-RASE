@@ -12,6 +12,8 @@ import AddItemScreen from './Screens/AddItem'
 import NewItemScreen from './Screens/newitem'
 import MAP from './Screens/Map'
 import CommunityScreen from './Screens/CommunityPage'
+import ProfileScreen from './Screens/ProfileScreen'
+import ItemScreen from './Screens/ItemScreen'
 // import Snap from './Screens/TakePhoto'
 // import CheckPhoto from './Screens/CheckPhoto'
 // import ImagePickerExample from './Screens/ImagePicker'
@@ -29,17 +31,20 @@ import { doc, updateDoc, setDoc, addDoc, deleteDoc } from "firebase/firestore"
 //    </HomeStack.Navigator>
 //   );
 // }
-const NewItemStack = createStackNavigator();
+const CommunityStack = createStackNavigator();
 
-function NewItemStackScreen() {
+function CommunityStackScreen() {
   return (
-    <NewItemStack.Navigator>
-      <NewItemStack.Screen name="Add Item" component={AddItemScreen} initialParams={{ itemId: 0, photo: null }} />
-      <NewItemStack.Screen name="New Item" component={NewItemScreen} />
-      {/* <NewItemStack.Screen name="Select Photo" component={ImagePickerExample} /> */}
+    <CommunityStack.Navigator
+    screenOptions={{
+      headerShown: false
+    }}>
+      <CommunityStack.Screen name="Community" component={CommunityScreen}/>
+      <CommunityStack.Screen name="New Item" component={NewItemScreen} />
+      <CommunityStack.Screen name="Item" component={ItemScreen} />
       {/* <NewItemStack.Screen name="Snap" component={Snap} />
       <NewItemStack.Screen name="CheckPhoto" component={CheckPhoto}/> */}
-    </NewItemStack.Navigator>
+    </CommunityStack.Navigator>
   );
   }
 
@@ -67,16 +72,16 @@ function MyTabs() {
           <MaterialCommunityIcons name="map" color={color} size={26} />
         ),
       }} />
-      <Tab.Screen name="Add" component={NewItemStackScreen} 
+      <Tab.Screen name="Add" component={CommunityStackScreen} 
       options={{
         tabBarLabel: 'Add',
         tabBarIcon: ({ color }) => (
           <MaterialCommunityIcons name="plus" color={color} size={26} />
         ),
       }}/>
-      <Tab.Screen name="Community" component={CommunityScreen} 
+      <Tab.Screen name="Profile" component={ProfileScreen} 
       options={{
-        tabBarLabel: 'Community',
+        tabBarLabel: 'Profile',
         tabBarIcon: ({ color }) => (
           <MaterialCommunityIcons name="account" color={color} size={26} />
         ),

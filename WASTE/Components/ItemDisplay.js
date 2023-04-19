@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import PropTypes from 'prop-types';
 
 
@@ -15,9 +15,16 @@ export default class Greeting extends Component {
 //     /* if prop is required **/
 //     name: PropTypes.string.isRequired,
 //   }
-
+  
   render() {
-    return <Text>Hello {this.props.name}!</Text>;
+    return (
+    <View>
+        <Image source={{ uri: this.props.png}}  style={{ width: 200, height: 200 }} />
+        <Text>Hello {this.props.name}!</Text>
+        <Text>Price: {this.props.price}</Text>
+        <Text>Description: {this.props.description}</Text>
+    </View>
 
+    );
   }
 }
