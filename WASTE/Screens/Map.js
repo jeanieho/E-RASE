@@ -135,7 +135,7 @@ return (
                 <TouchableOpacity 
                 onPress={() => Linking.openURL(marker.link)} 
                 style={[styles.signIn, {
-                  borderColor: '#FF6347',
+                  borderColor: '#27242d',
                   borderWidth: 1
                 }]}>
                   <Text style={{ color: 'blue', fontSize: 10 }}>
@@ -145,7 +145,7 @@ return (
 
                 <TouchableOpacity onPress={() => openMaps(marker.coordinates.latitude, marker.coordinates.longitude)}
                   style={[styles.signIn, {
-                    borderColor: '#FF6347',
+                    borderColor: '#27242d',
                     borderWidth: 1
                   }]}>
                   <Text style={{ color: 'blue', fontSize: 10 }}>
