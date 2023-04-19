@@ -4,6 +4,8 @@ import { StyleSheet, Text, View, TouchableOpacity, Image, Linking } from 'react-
 import MapView, { PROVIDER_GOOGLE, Marker, Callout } from 'react-native-maps';
 import * as Location from 'expo-location';
 
+
+
 this.state = {
   latitude: 37.78825,
   longitude: -122.4324,
@@ -80,9 +82,10 @@ this.state = {
 export default function Map() {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
+
   const openMaps = (latitude, longitude) => {
     const daddr = `${latitude},${longitude}`;
-    const company = Platform.OS === "ios" ? "apple" : "google";
+    const company = Platform.select === "ios" ? "apple" : "google";
     Linking.openURL(`http://maps.${company}.com/maps?daddr=${daddr}`);
   }
 
@@ -106,9 +109,11 @@ export default function Map() {
     longitudeDelta: 0.0421,
   };
 
-  return (
-    <View style={styles.container}>
-      {location ? (<MapView
+
+return (
+  <View style={styles.container}>
+    {location ? (
+      <MapView
         style={styles.map}
         region={region}
         provider={PROVIDER_GOOGLE}
@@ -120,77 +125,51 @@ export default function Map() {
             title={marker.title}
             coordinate={marker.coordinates}
             pinColor={'#0000FF'}
-            // image={require('/Users/jeanieho/Documents/Convergent/Sustainability/Waste/assets/Ellipse.png')}
+            // onPress={() => openMaps(marker.coordinates.latitude, marker.coordinates.longitude)}
           >
-            {/* <View style={{ position: 'absolute', bottom: '20' }}> */}
             <Callout style={styles.callout}>
-                <View>
+              <View>
                 <Image style={{ height: 50, width: 50 }} source={{ uri: marker.image }} resizeMode="cover" />
-                  <Text style={styles.calloutTitle}>{marker.title}</Text>
-                  <Text style={styles.calloutDescription}>{marker.description}
-                    <TouchableOpacity>
-                      {/* onPress={() => Linking.openURL('maps://app?saddr=100+101&daddr=100+102')} */}
-                      <Text style={{ color: 'blue', fontSize: 10}}
-                          onPress={() => Linking.openURL(marker.link)}>
-                          {marker.link}
-                      </Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                      <Text style={{ color: 'blue', fontSize: 10 }}
-                        onPress={openMaps(marker.coordinates)}>
-                        {marker.address}
-                      </Text>
-                    </TouchableOpacity>
+                <Text style={styles.calloutTitle}>{marker.title}</Text>
+                <Text style={styles.calloutDescription}>{marker.description}</Text>
+                <TouchableOpacity 
+                onPress={() => Linking.openURL(marker.link)} 
+                style={[styles.signIn, {
+                  borderColor: '#FF6347',
+                  borderWidth: 1
+                }]}>
+                  <Text style={{ color: 'blue', fontSize: 10 }}>
+                    {marker.link}
                   </Text>
-                </View>
-              </Callout>
-            {/* </View> */}
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={() => openMaps(marker.coordinates.latitude, marker.coordinates.longitude)}
+                  style={[styles.signIn, {
+                    borderColor: '#FF6347',
+                    borderWidth: 1
+                  }]}>
+                  <Text style={{ color: 'blue', fontSize: 10 }}>
+                    {marker.address}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </Callout>
           </Marker>
         ))}
-        {/* <Text> E-RASE </Text> */}
       </MapView>
-      ) : (
-          <View>
-            <Text>E-RASE</Text>
-            <Image
-              source={require('/Users/jeanieho/Documents/Convergent/Sustainability/Waste/assets/logo.png')}
-              resizeMode="contain"
-              style={styles.loadingImage}
-            ></Image>
-          </View>
-    
-        // <Image style={styles.loadingImage}> </Image>
-      )}
-    </View>
-  );
+    ) : (
+      <View>
+        <Text>E-RASE</Text>
+        <Image
+          source={require('/Users/jeanieho/Documents/Convergent/Sustainability/Waste/assets/logo.png')}
+          resizeMode="contain"
+          style={styles.loadingImage}
+        ></Image>
+      </View>
+    )}
+  </View>
+);
 }
-
-
-
-//   return (
-//     <MapView
-//       style={{ flex: 1 }}
-//       region={{
-//         latitude: '37.78875',
-//         longitude: '-122.4328',
-//         latitudeDelta: 0.0922,
-//         longitudeDelta: 0.0421,Z
-//       }}
-
-
-//     >
-//       {this.state.markers.map((marker, index) => (
-//         <Marker
-//           key={index}
-//           title={marker.title}
-//           coordinate={marker.coordinates}
-//         />
-//       ))}
-//       <Text> Hello map</Text>
-//     </MapView>
-//   );
-// };
-
 
 
 var styles = StyleSheet.create({
@@ -217,6 +196,13 @@ var styles = StyleSheet.create({
     width: 50,
     height: 50,
   },
+  signIn: {
+    width: '100%',
+    padding: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 3
+  },
   loadingImage: {
     position: 'absolute',
     width: 844,
@@ -241,4 +227,35 @@ var styles = StyleSheet.create({
 
   }
 });
-//}
+
+            //onPress={() => openMaps(marker.coordinates.latitude, marker.coordinates.longitude)}
+            // image={require('/Users/jeanieho/Documents/Convergent/Sustainability/Waste/assets/Ellipse.png')}
+{/* <View style={{ position: 'absolute', bottom: '20' }}> */ }
+{/* </View> */ }
+{/* <TouchableOpacity onPress={marker.openMapURL(marker.coordinates.latitude, marker.coordinates.longitude)}>
+                      <Text style={{ color: 'blue', fontSize: 10 }}>
+                        {marker.address}
+                      </Text>
+                    </TouchableOpacity> */}
+
+{/* <TouchableOpacity onPress={Linking.openURL(this.marker.link)}>
+                      <Text style={{ color: 'blue', fontSize: 10 }}>
+                        {marker.link}
+                      </Text>
+                    </TouchableOpacity> */}
+
+{/* <TouchableHighlight onPress={() => Linking.openURL(this.marker.link)}>
+  
+                    <Text style={{ color: 'blue', fontSize: 10 }}>{marker.link}</Text>
+                  </TouchableHighlight> */}
+
+
+{/* <Text style={{ color: 'blue', fontSize: 10 }}
+                  onPress = {() => Linking.openURL(this.marker.link)}>
+                  {marker.link}
+                </Text> */}
+
+{/* <Text style={{ color: 'blue', fontSize: 10 }}
+                  onPress={() => openMaps(marker.coordinates.latitude, marker.coordinates.longitude)}>
+                  {marker.address}
+                </Text> */}
