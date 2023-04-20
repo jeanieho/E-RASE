@@ -327,11 +327,11 @@ export default ExploreScreen = () => {
             },
             {
                 name: 'Wires',
-                icon: <MaterialCommunityIcons style={styles.chipsIcon} name="recycle" size={18} />,
+                icon: <MaterialCommunityIcons style={styles.chipsIcon} name="firewire" size={18} />,
             },
             {
                 name: 'Consumer Electronics',
-                icon: <MaterialCommunityIcons style={styles.chipsIcon} name="recycle" size={18} />,
+                icon: <MaterialCommunityIcons style={styles.chipsIcon} name="phone" size={18} />,
             },
             {
                 name: 'Batteries',
@@ -654,7 +654,7 @@ const styles = StyleSheet.create({
         padding: 5,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 3
+        borderRadius: 0
     },
     textSign: {
         fontSize: 14,

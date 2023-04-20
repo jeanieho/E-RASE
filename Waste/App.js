@@ -70,38 +70,38 @@ function MyTabs() {
   }
   return (
     <Tab.Navigator
-    initialRouteName="Home"
-    activeColor="black"
-    inactiveColor="black"
-      barStyle={{ backgroundColor: '#571182', height: 90}}
+    initialRouteName="Add"
+    activeColor="white"
+    inactiveColor="white"
+      barStyle={{ backgroundColor: '#000000', height: 90 }}
   >
 
-      <Tab.Screen name="Home" component={HomeScreen}
+      {/* <Tab.Screen name="Home" component={HomeScreen}
       options={{
         tabBarLabel: 'Home',
         tabBarIcon: ({ color }) => (
           <MaterialCommunityIcons name="home" color={color} size={26} />
         ),
-      }} />
+      }} /> */}
+      <Tab.Screen name="Add" component={CommunityStackScreen}
+        options={{
+          tabBarLabel: 'Discover',
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="compass-outline" color={"#FFFFFF"} size={30} />
+          ),
+        }} />
       <Tab.Screen name="Map" component={ExploreScreen}
       options={{
         tabBarLabel: 'Map',
         tabBarIcon: ({ color }) => (
-          <MaterialCommunityIcons name="map" color={color} size={26} />
+          <MaterialCommunityIcons name="map" color={"#FFFFFF"} size={30} />
         ),
       }} />
-      <Tab.Screen name="Add" component={CommunityStackScreen} 
-      options={{
-        tabBarLabel: 'Add',
-        tabBarIcon: ({ color }) => (
-          <MaterialCommunityIcons name="plus" color={color} size={26} />
-        ),
-      }}/>
       <Tab.Screen name="Profile" component={ProfileScreen} 
       options={{
         tabBarLabel: 'Profile',
         tabBarIcon: ({ color }) => (
-          <MaterialCommunityIcons name="account" color={color} size={26} />
+          <MaterialCommunityIcons name="account" color={"#FFFFFF"} size={30} />
         ),
       }}/>
     </Tab.Navigator>
