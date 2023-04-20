@@ -8,7 +8,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 import * as MailComposer from 'expo-mail-composer';
 import { useState, useEffect, useCallback} from 'react'
-
+import * as SMS from 'expo-sms';
+// import { Constants, SMS } from 'expo';
 
 
 
@@ -31,7 +32,29 @@ export default ItemScreen = () => {
                 body: 'I would like to buy your' + name + ' !',
             });
         }
-      }
+    }
+    const sendText = async() => {
+        // const status = await SMS.sendSMSAsync(
+        //     '(817) 492-5144',
+        //     'Is this item available?'
+        // );
+
+        // console.log(status);
+        const { result } = await SMS.sendSMSAsync(
+            '(817) 492-5144',
+            'Is the "MX Master 3s Mouse" still available?',
+            {
+                attachments: [
+                    {
+                        uri: 'https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg',
+                        mimeType: 'image/png',
+                        filename: 'myfile.png',
+                    },
+                ],
+            }
+        )
+        console.log(result);
+    }
 
   return (
     <View>
@@ -50,9 +73,10 @@ export default ItemScreen = () => {
             <TouchableOpacity style={styles.heartBubble} onPress={changeColor}>
                 <Ionicons position='center' name="heart" size={30} color={heart} style={styles.heart}></Ionicons>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={sendText}>
                 <Ionicons position='center' name="chatbubbles" size={40} color="white" style={styles.message}></Ionicons>
             </TouchableOpacity>
+
             <TouchableOpacity onPress={sendEmail}>
                 <Ionicons position='center' name="mail" size={40} color="white" style={styles.mail}></Ionicons>
             </TouchableOpacity>
