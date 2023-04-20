@@ -242,19 +242,6 @@ export default ExploreScreen = () => {
     const initialMapState = {
         markers: [
             {
-                title: 'Austin Recycle & Reuse Drop-off Center',
-                description: 'M-Sa 9:00 AM - 5:00 PM Closed Sunday ',
-                image: Images[0].image,
-                link: 'https://www.austintexas.gov/dropoff',
-                address: '2514 Business Center Dr, Austin, TX 78744',
-                coordinate: {
-                    latitude: 30.21542134,
-                    longitude: -97.7381713,
-                },
-                rating: 4,
-                reviews: 99,
-            },
-            {
                 title: 'STS Electronic Recycling',
                 description: 'M-F 8:00 AM - 5:00 PM Weekends Closed ',
                 link: 'https://www.stselectronicrecyclinginc.com/austin',
@@ -266,6 +253,19 @@ export default ExploreScreen = () => {
                 image: Images[1].image,
                 rating: 5,
                 reviews: 102,
+            },
+            {
+                title: 'Austin Recycle & Reuse Drop-off Center',
+                description: 'M-Sa 9:00 AM - 5:00 PM Closed Sunday ',
+                image: Images[0].image,
+                link: 'https://www.austintexas.gov/dropoff',
+                address: '2514 Business Center Dr, Austin, TX 78744',
+                coordinate: {
+                    latitude: 30.21542134,
+                    longitude: -97.7381713,
+                },
+                rating: 4,
+                reviews: 99,
             },
             {
                 title: 'Z-Tech Global Solutions',
@@ -532,7 +532,7 @@ export default ExploreScreen = () => {
                     
                                     style={[styles.signIn, {
                                         borderColor: '#571182',
-                                        borderWidth: 1
+                                        borderWidth: 0.5
                                     }]}
                                 >
                                     <Text style={[styles.textSign, {
@@ -654,10 +654,10 @@ const styles = StyleSheet.create({
         padding: 5,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 0
+        borderRadius: 3
     },
     textSign: {
-        fontSize: 14,
+        fontSize: 12,
         fontWeight: 'bold'
     }
 });
