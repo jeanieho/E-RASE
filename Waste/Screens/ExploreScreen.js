@@ -322,6 +322,10 @@ export default ExploreScreen = () => {
         ],
         categories: [
             {
+                name: 'Money Maker',
+                icon: <Fontisto name="dollar" style={styles.chipsIcon} size={18} />,
+            },
+            {
                 name: 'Metal Scraps',
                 icon: <MaterialCommunityIcons style={styles.chipsIcon} name="recycle" size={18} />,
             },
@@ -336,10 +340,6 @@ export default ExploreScreen = () => {
             {
                 name: 'Batteries',
                 icon: <MaterialCommunityIcons name="battery" style={styles.chipsIcon} size={18} />,
-            },
-            {
-                name: 'Money Maker',
-                icon: <Fontisto name="dollar" style={styles.chipsIcon} size={15} />,
             },
         ],
         region: {
