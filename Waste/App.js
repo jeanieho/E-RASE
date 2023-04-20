@@ -73,7 +73,7 @@ function MyTabs() {
     initialRouteName="Home"
     activeColor="black"
     inactiveColor="black"
-      barStyle={{ backgroundColor: '#571182' }}
+      barStyle={{ backgroundColor: '#571182', height: 90}}
   >
 
       <Tab.Screen name="Home" component={HomeScreen}

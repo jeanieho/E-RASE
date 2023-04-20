@@ -93,7 +93,7 @@ const ListW = ({ item, filter }) => {
         resizeMode="cover"
       />
       <Text style={styles.itemName}>{item.text}</Text>
-      <Text style={styles.itemPrice}>{item.price}</Text>
+      <Text style={styles.itemPrice}>${item.price}</Text>
       <Text style={styles.itemCondition}>used</Text>
     </TouchableOpacity>
   );
@@ -106,6 +106,8 @@ export default CommunityScreen = () => {
   const [search, setSearch] = useState('');
   const CE = 'CE';
   const All = 1;
+
+
 
   const [device, setDevice] = useState(null);
   const [cool, setCool] = useState(null);
@@ -156,7 +158,7 @@ export default CommunityScreen = () => {
             setCond(myCond);
             setDesc(myDesc);
           });
-
+          Catalogs();
   //   i = 0;
   //   iCED = 0;
   //   iCE = 0;
@@ -276,7 +278,7 @@ export default CommunityScreen = () => {
           resizeMode="cover"
         />
          <Text style={styles.itemName}>{name[numid]}</Text>
-         <Text style={styles.itemPrice}>{price[numid]}</Text>
+         <Text style={styles.itemPrice}>${price[numid]}</Text>
          <Text style={styles.itemCondition}>{cond[numid]}</Text>
       </TouchableOpacity>
       // <Text>{id[item]}</Text>
@@ -294,6 +296,9 @@ export default CommunityScreen = () => {
       newid: id[i],
   }
     )
+  }
+  if(device == null){
+    Catalogs();
   }
   return (
     <View style={styles.container}>
@@ -669,7 +674,7 @@ padding: 0,
 // width: 50,
 // height: 50,
 left: 319,
-top: 632,
+top: 662,
 borderRadius: 35,
 
 backgroundColor: 'purple',

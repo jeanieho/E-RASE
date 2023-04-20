@@ -88,6 +88,7 @@ export default NewItemScreen = () => {
 //         uploadImage(result.uri,"test-image");
 //       }
      };
+
 //   var uploadImage = async (uri,imageName) => {
 //     const response = await fetch(uri);
 //     const blob = await response.blob();
@@ -160,12 +161,12 @@ export default NewItemScreen = () => {
         </TouchableOpacity>
       </View>
       <View style={styles.cancelBub}>
-        <TouchableOpacity  onPress={finalPress}>
+        <TouchableOpacity  onPress={choosePress}>
           <Text style={styles.postText}>Cancel</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.postBub}>
-        <TouchableOpacity  onPress={choosePress}>
+        <TouchableOpacity  onPress={finalPress}>
           <Text style={styles.postText}>Post</Text>
         </TouchableOpacity>
       </View>        
