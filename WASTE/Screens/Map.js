@@ -23,7 +23,7 @@ this.state = {
     },
     {
       title: 'STS Electronic Recycling',
-      description: 'This is a drop-off center for recyclable items. ',
+      description: 'M-F 8:00 AM - 5:00 PM Closed on weekends ',
       image: 'https://lh4.googleusercontent.com/-kYCjIt8W8R8/AAAAAAAAAAI/AAAAAAAAAAA/M22HxSEzHWA/s110-p-k-no-ns-nd/photo.jpg',
       link: 'https://www.stselectronicrecyclinginc.com/austin',
       address: '9442 Capital of Texas Highway Plaza Suite 500 Austin, TX 78759',
@@ -34,7 +34,7 @@ this.state = {
     },
     {
       title: 'Z-Tech Global Solutions',
-      description: 'This is a drop-off center for recyclable items. ',
+      description: "M-F 8:00 AM - 4:00 PM Closed on weekends",
       image: 'https://lh4.googleusercontent.com/-7iYtH2t2z3Y/AAAAAAAAAAI/AAAAAAAAAAA/NzYuDK0wMAk/s110-p-k-no-ns-nd/photo.jpg',
       link: 'https://www.ztechglobal.net/',
       address: '8812 Shoal Creek Blvd, Austin, TX 78757',
@@ -45,7 +45,7 @@ this.state = {
     },
     {
       title: 'Recycling Center',
-      description: 'This is a drop-off center for recyclable items. ',
+      description: "M-F 8:00 AM - 6:00 PM Sa 8: 00 AM - 5: 00 PM Su 12: 00 PM - 5: 00 PM",
       image: 'https://lhhttps://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.recycling.com%2Fdownloads%2Frecycling-symbol%2F&psig=AOvVaw2f8elBvd3L2DhmhfUu7XN_&ust=1681062666897000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCLiQzsvsmv4CFQAAAAAdAAAAABAI4.googleusercontent.com/-7iYtH2t2z3Y/AAAAAAAAAAI/AAAAAAAAAAA/NzYuDK0wMAk/s110-p-k-no-ns-nd/photo.jpg',
       address: '9405 Dessau Rd, Austin, TX 78754',
       link: 'http://www.recyclingcenteraustin.com/',
@@ -56,7 +56,7 @@ this.state = {
     },
     {
       title: 'CMC Recycling',
-      description: 'This is a drop-off center for recyclable items. ',
+      description: 'M - F 8: 00 AM - 5: 00 PM Closed on weekends',
       image: 'https://lh4.googleuhttps://www.google.com/url?sa=i&url=https%3A%2F%2Fm.facebook.com%2Fcommercialmetals%2F&psig=AOvVaw2R7C8GCpWokzMKeAvetQB3&ust=1681062645204000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCIiSx8Hsmv4CFQAAAAAdAAAAABADsercontent.com/-7iYtH2t2z3Y/AAAAAAAAAAI/AAAAAAAAAAA/NzYuDK0wMAk/s110-p-k-no-ns-nd/photo.jpg',
       link: 'https://www.cmcrecycling.com/locations/austin-north',
       address: '1704 Howard Ln, Austin, TX 78728',
@@ -67,7 +67,7 @@ this.state = {
     },
     {
       title: 'Wright Recycling',
-      description: 'This is a drop-off center for recyclable items. ',
+      description: "M-F 8:00 AM - 4:30 PM Sa 9: 00 AM - 1: 30 PM Closed Sunday",
       image: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.facebook.com%2Frecyclingthewrightway%2F&psig=AOvVaw2AbMfcPmZG2rKUpUu3c4WD&ust=1681062609796000&source=images&cd=vfe&ved=0CBIQjhxqFwoTCPiHkLDsmv4CFQAAAAAdAAAAABAD',
       link: 'https://wrightrecyclingllc.com/',
       address: '9513 Brown Lane, Austin, Texas 78754, United States',
@@ -133,11 +133,11 @@ return (
                 <Text style={styles.calloutTitle}>{marker.title}</Text>
                 <Text style={styles.calloutDescription}>{marker.description}</Text>
                 <TouchableOpacity 
-                onPress={() => Linking.openURL(marker.link)} 
-                style={[styles.signIn, {
-                  borderColor: '#27242d',
-                  borderWidth: 1
-                }]}>
+                  onPress={() => Linking.openURL(marker.link)} 
+                  style={[styles.signIn, {
+                    borderColor: '#27242d',
+                    borderWidth: 1
+                  }]}>
                   <Text style={{ color: 'blue', fontSize: 10 }}>
                     {marker.link}
                   </Text>
@@ -157,6 +157,7 @@ return (
           </Marker>
         ))}
       </MapView>
+      
       ) : (
           <View>
             <Text>E-RASE</Text>
@@ -206,7 +207,7 @@ var styles = StyleSheet.create({
     borderRadius: 3
   },
   loadingImage: {
-    position: 'absolute',
+    justifyContent: 'center',
     width: 390,
     height: 844,
     left: 0,

@@ -1,19 +1,21 @@
+import React, { useState, useEffect } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { NavigationContainer } from '@react-navigation/native';
 import { Camera, CameraType } from 'expo-camera';
-import { useState } from 'react';
 import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack'
 import HomeScreen from './Screens/home'
 // import ProfileScreen from './Screens/profile'
 import AddItemScreen from './Screens/AddItem'
 import NewItemScreen from './Screens/newitem'
-import MAP from './Screens/Map'
+import ExploreScreen from './Screens/ExploreScreen'
 import CommunityScreen from './Screens/CommunityPage'
 import ProfileScreen from './Screens/ProfileScreen'
 import ItemScreen from './Screens/ItemScreen'
+import SplashScreen from './Screens/SplashScreen';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 // import Snap from './Screens/TakePhoto'
 // import CheckPhoto from './Screens/CheckPhoto'
 // import ImagePickerExample from './Screens/ImagePicker'
@@ -51,13 +53,29 @@ function CommunityStackScreen() {
 const Tab = createMaterialBottomTabNavigator();
 
 function MyTabs() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  }, []);
+
+  if (isLoading) {
+    return (
+      <SafeAreaProvider>
+        <SplashScreen></SplashScreen>
+      </SafeAreaProvider>
+    );
+  }
   return (
     <Tab.Navigator
     initialRouteName="Home"
     activeColor="black"
     inactiveColor="black"
-    barStyle={{ backgroundColor: '#694fad' }}
+      barStyle={{ backgroundColor: '#571182' }}
   >
+
       <Tab.Screen name="Home" component={HomeScreen}
       options={{
         tabBarLabel: 'Home',
@@ -65,7 +83,7 @@ function MyTabs() {
           <MaterialCommunityIcons name="home" color={color} size={26} />
         ),
       }} />
-      <Tab.Screen name="Map" component={MAP}
+      <Tab.Screen name="Map" component={ExploreScreen}
       options={{
         tabBarLabel: 'Map',
         tabBarIcon: ({ color }) => (

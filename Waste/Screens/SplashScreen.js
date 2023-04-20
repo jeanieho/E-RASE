@@ -1,12 +1,12 @@
 import React, { useEffect, useRef } from 'react'
-import { Animated, Dimensions, Image, Text, View } from "react-native";
+import { Animated, Dimensions, Image, Text, View, StyleSheet } from "react-native";
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 // Logo....
-import Logo from '../assets/logo.png';
+import Logo from '../assets/landpage.png';
 import Home from './CommunityPage';
 
-const BGColor = "#27242d"
+const BGColor = "#180848"
 
 export default function SplashScreen() {
 
@@ -121,18 +121,18 @@ export default function SplashScreen() {
                     justifyContent: 'center',
                 }}>
                     <Animated.Image source={Logo} style={{
-                        width: 100,
-                        height: 100,
+                        // width: 100,
+                        // height: 100,
                         marginBottom: 20,
-                        transform: [
-                            { translateX: moveLogo.x },
-                            { translateY: moveLogo.y },
-                            { scale: scaleLogo },
+                        // transform: [
+                        //     { translateX: moveLogo.x },
+                        //     { translateY: moveLogo.y },
+                        //     { scale: scaleLogo },
 
-                        ]
+                        // ]
                     }}></Animated.Image>
 
-                    <Animated.Text style={{
+                    {/* <Animated.Text style={{
                         fontSize: 25,
                         fontWeight: 'bold',
                         color: 'white',
@@ -140,13 +140,13 @@ export default function SplashScreen() {
                             { translateY: moveTitle.y },
                             { scale: scaleTitle }
                         ]
-                    }}>Chatty</Animated.Text>
+                    }}>E-RASE</Animated.Text> */}
 
                 </Animated.View>
 
             </Animated.View>
 
-            <Animated.View style={{
+            {/* <Animated.View style={{
                 position: 'absolute',
                 top: 0,
                 bottom: 0,
@@ -161,8 +161,30 @@ export default function SplashScreen() {
 
                 <Home></Home>
 
-            </Animated.View>
+            </Animated.View> */}
 
         </View>
     );
 }
+
+// export default function SplashScreen() {
+//     <View>
+//         <Image
+//             source={require("../assets/landpage.png")}
+//             resizeMode="contain"
+//             style={styles.loadingImage}
+//         ></Image>
+//     </View>
+// }
+
+// const styles = StyleSheet.create({
+//     loadingImage: {
+//         justifyContent: 'center',
+//         width: 390,
+//         height: 844,
+//         left: 0,
+//         top: 0,
+//         backgroundColor: '#180848',
+//         // transform: rotate(-90),
+//     },
+// });
