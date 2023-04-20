@@ -73,7 +73,7 @@ function MyTabs() {
     initialRouteName="Add"
     activeColor="white"
     inactiveColor="white"
-      barStyle={{ backgroundColor: '#000000', height: 90 }}
+      barStyle={{ backgroundColor: '#000000', height: 80, borderTopColor: 'white', borderTopWidth: .25 }}
   >
 
       {/* <Tab.Screen name="Home" component={HomeScreen}
@@ -87,21 +87,21 @@ function MyTabs() {
         options={{
           tabBarLabel: 'Discover',
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="compass-outline" color={"#FFFFFF"} size={30} />
+            <MaterialCommunityIcons name="compass-outline" color={"#FFFFFF"} size={26} />
           ),
         }} />
       <Tab.Screen name="Map" component={ExploreScreen}
       options={{
         tabBarLabel: 'Map',
         tabBarIcon: ({ color }) => (
-          <MaterialCommunityIcons name="map" color={"#FFFFFF"} size={30} />
+          <MaterialCommunityIcons name="map" color={"#FFFFFF"} size={26} />
         ),
       }} />
       <Tab.Screen name="Profile" component={ProfileScreen} 
       options={{
         tabBarLabel: 'Profile',
         tabBarIcon: ({ color }) => (
-          <MaterialCommunityIcons name="account" color={"#FFFFFF"} size={30} />
+          <MaterialCommunityIcons name="account" color={"#FFFFFF"} size={26} />
         ),
       }}/>
     </Tab.Navigator>
