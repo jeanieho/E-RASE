@@ -42,11 +42,11 @@ export default ItemScreen = () => {
         // console.log(status);
         const { result } = await SMS.sendSMSAsync(
             '(817) 492-5144',
-            'Is the "MX Master 3s Mouse" still available?',
+            'Is the ' + name + ' still available?',
             {
                 attachments: [
                     {
-                        uri: 'https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg',
+                        uri: png,
                         mimeType: 'image/png',
                         filename: 'myfile.png',
                     },
@@ -64,7 +64,7 @@ export default ItemScreen = () => {
             <Text style={styles.itemName}>{name}</Text>
             <Text style={styles.price}>${price}</Text>
             <Text style={styles.date}>Listed 2 days ago 5 mi away</Text>
-            <Text style={styles.name}>Peter Porker</Text>
+            <Text style={styles.name}>Peter Pan</Text>
             <Text style={styles.verified}>Verified Seller</Text>
             <Text style={styles.details}>Details</Text>
             <Text style={styles.condition}>Condition: {cond}</Text>

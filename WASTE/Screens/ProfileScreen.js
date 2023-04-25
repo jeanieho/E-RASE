@@ -18,7 +18,7 @@ export default ProfileScreen = () => {
           style={styles.linearGradient}
         >
         <Image style={styles.profpic} source={{uri: 'https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg'}}></Image>
-        <Text style={styles.name}>Peter Porker</Text>
+        <Text style={styles.name}>Peter Pan</Text>
         <Text style={styles.erased}>E-rased 12 items</Text>
 
         <View style={styles.topLeft}>
@@ -65,7 +65,7 @@ const styles = StyleSheet.create ({
     },
     name: {
         position: 'absolute',
-        width: 188,
+        width: 208,
         height: 32,
         left: 169,
         top: 92,
